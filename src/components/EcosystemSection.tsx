@@ -115,9 +115,9 @@ export function EcosystemSection() {
               </CardIcon>
               <CardTitle>Community & Networking</CardTitle>
               <CardDescription>
-                Join over 750+ members in Baltimore and beyond. Access exclusive
-                discord channel, mentorship circles, job board, tickets to
-                conferences, resources etc.
+                Join the BLK Tech Community — connect with members, grow your
+                network, access mentorship circles, job boards, event tickets,
+                and resources.
               </CardDescription>
               <CardFooter>
                 <div className="flex -space-x-2">

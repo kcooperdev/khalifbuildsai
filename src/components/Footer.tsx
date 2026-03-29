@@ -2,20 +2,19 @@
 
 import Link from "next/link";
 import { Logo } from "./ui/Logo";
-import { capture } from "@/lib/posthog";
 
-const platformLinks = [
-  { href: "/about", label: "About Us" },
-];
-
-const resourceLinks = [
-  { href: "https://blk-tech-connect.beehiiv.com/", label: "Newsletter", external: true },
+const navLinks = [
+  { href: "/about", label: "About" },
+  { href: "/ecosystem", label: "Ecosystem" },
+  { href: "/events", label: "Events" },
+  { href: "/academy", label: "Academy" },
+  { href: "/press", label: "News" },
   { href: "/help", label: "Help Center" },
 ];
 
 const socialLinks = [
-  { href: "https://www.linkedin.com/company/blk-tech-connect/", label: "LinkedIn", external: true },
   { href: "https://www.instagram.com/blktechconnect/", label: "Instagram", external: true },
+  { href: "https://discord.gg/gWfhQFzbnB", label: "Discord", external: true },
 ];
 
 function LinkColumn({
@@ -27,7 +26,9 @@ function LinkColumn({
 }) {
   return (
     <div>
-      <h4 className="mb-4 text-[13px] font-semibold text-white">{title}</h4>
+      <h4 className="mb-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-white/60">
+        {title}
+      </h4>
       <ul className="space-y-3">
         {links.map((link) => (
           <li key={link.href}>
@@ -36,14 +37,14 @@ function LinkColumn({
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[13px] text-white/35 transition-colors duration-200 hover:text-white/70"
+                className="text-[14px] text-white/35 transition-colors duration-200 hover:text-white/70"
               >
                 {link.label}
               </a>
             ) : (
               <Link
                 href={link.href}
-                className="text-[13px] text-white/35 transition-colors duration-200 hover:text-white/70"
+                className="text-[14px] text-white/35 transition-colors duration-200 hover:text-white/70"
               >
                 {link.label}
               </Link>
@@ -56,62 +57,58 @@ function LinkColumn({
 }
 
 export function Footer() {
-  const allLinks = [
-    ...platformLinks.map((l) => ({ ...l, external: false })),
-    ...resourceLinks.map((l) => ({ ...l, external: false })),
-    ...socialLinks,
-  ];
-
   return (
-    <footer className="bg-[#0a0a0a]">
-      {/* Nav links */}
-      <div className="border-y border-white/[0.04] px-5 py-10 sm:px-8">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6">
-          <Logo variant="footer" />
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {allLinks.map((link) =>
-              link.external ? (
+    <footer className="bg-[#060606]">
+      {/* Brand statement + links */}
+      <div className="border-t border-white/[0.06] px-5 py-14 sm:px-8 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 md:grid-cols-12">
+            {/* Brand column */}
+            <div className="md:col-span-5">
+              <Logo variant="footer" />
+              <p className="mt-5 max-w-sm text-[14px] leading-relaxed text-white/30">
+                Where communities grow into innovators. Expanding access to
+                technology, education, and opportunity — one city at a time.
+              </p>
+              <div className="mt-6">
                 <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[13px] text-white/35 transition-colors duration-200 hover:text-white/70"
+                  href="mailto:hello@blktechconnect.com"
+                  className="text-[14px] text-white/40 transition-colors hover:text-amber-400/80"
                 >
-                  {link.label}
+                  hello@blktechconnect.com
                 </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-[13px] text-white/35 transition-colors duration-200 hover:text-white/70"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+              </div>
+            </div>
+
+            {/* Link columns */}
+            <div className="grid grid-cols-2 gap-8 md:col-span-7">
+              <LinkColumn title="Navigate" links={navLinks} />
+              <LinkColumn title="Connect" links={socialLinks} />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="px-5 py-6 sm:px-8">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
-          <span className="text-[13px] text-white/25">
-            © 2026 BLK Tech Connect. All rights reserved.
-          </span>
+      {/* Bottom bar */}
+      <div className="border-t border-white/[0.04] px-5 py-6 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex items-center gap-3">
+            <span className="text-[13px] text-white/20">
+              © 2026 BLK Tech Connect. All rights reserved.
+            </span>
+            <span className="hidden text-[13px] text-white/10 sm:inline">
+              ·
+            </span>
+            <span className="hidden text-[13px] text-white/20 sm:inline">
+              Beyond Limits & Knowledge
+            </span>
+          </div>
           <div className="flex gap-6">
             <Link
-              href="/privacy"
-              className="text-[13px] text-white/25 transition-colors duration-200 hover:text-white/50"
+              href="/code-of-conduct"
+              className="text-[13px] text-white/20 transition-colors duration-200 hover:text-white/50"
             >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-[13px] text-white/25 transition-colors duration-200 hover:text-white/50"
-            >
-              Terms of Service
+              Code of Conduct
             </Link>
           </div>
         </div>

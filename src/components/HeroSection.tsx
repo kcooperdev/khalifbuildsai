@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { AlertBanner } from "./AlertBanner";
 import Button from "./ui/Button";
 import { capture } from "@/lib/posthog";
 
-// Sparkle / diamond icon matching the screenshots
 const SparkleIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,6 +22,25 @@ const SparkleIcon = () => (
 );
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = section.querySelectorAll<HTMLElement>(".card-glow");
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+      });
+    };
+
+    section.addEventListener("mousemove", handleMouseMove);
+    return () => section.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const handleHeroCtaClick = (ctaText: string, destination: string) => {
     capture("hero_cta_clicked", {
       cta_text: ctaText,
@@ -30,34 +49,44 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-black px-5 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-20 md:pb-28 md:pt-28 lg:pb-36 lg:pt-32">
-      {/* Radial glow behind hero text */}
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-[#0A0A0A] px-5 pb-20 pt-20 sm:px-8 sm:pb-28 sm:pt-24 md:pb-36 md:pt-32 lg:pb-44 lg:pt-36"
+    >
+      {/* Background dot grid */}
+      <div className="dot-grid absolute inset-0 opacity-40" aria-hidden />
+
+      {/* Primary warm glow */}
       <div className="hero-glow" aria-hidden />
+      {/* Secondary violet glow */}
+      <div className="hero-glow-violet" aria-hidden />
 
-      <div className="relative z-10 mx-auto max-w-3xl">
+      <div className="relative z-10 mx-auto max-w-4xl">
         <div className="flex flex-col items-center text-center">
-          <AlertBanner text="Cohorts coming soon fall '26" />
+          <div className="animate-fade-up">
+            <AlertBanner text="Academy cohorts launching fall '26" href="/academy" />
+          </div>
 
-          <h1 className="mt-10 text-[2.5rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.5rem]">
-            Bridging the
+          <h1 className="animate-fade-up delay-100 mt-10 text-[2.75rem] font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Where Communities
             <br />
-            <span className="text-gradient-muted">tech diversity gap.</span>
+            <span className="text-gradient-warm">Grow Into Innovators.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/50 sm:text-base md:text-lg md:leading-relaxed">
-            BLK Tech Connect is the premier inclusive ecosystem for Black
-            technologists, founders, and innovators. We build pathways to
-            economic mobility through enterprise connections.
+          <p className="animate-fade-up delay-200 mx-auto mt-7 max-w-2xl text-base leading-relaxed text-white/50 sm:text-lg md:text-xl md:leading-relaxed">
+            BLK Tech Connect empowers communities to go beyond limits and build
+            the knowledge needed to become the next generation of tech talent,
+            innovators, and founders.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <div className="animate-fade-up delay-300 mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Button
               variant="primary"
               icon={<SparkleIcon />}
               iconPosition="left"
               as="a"
               href="/get-involved"
-              className="px-7 py-3"
+              className="px-8 py-3.5 text-base"
               onClick={() => handleHeroCtaClick("Get Involved", "/get-involved")}
             >
               Get Involved
@@ -66,11 +95,29 @@ export function HeroSection() {
               variant="secondary"
               as="a"
               href="/partners"
-              className="px-7 py-3"
-              onClick={() => handleHeroCtaClick("Explore Partners", "/partners")}
+              className="px-8 py-3.5 text-base"
+              onClick={() => handleHeroCtaClick("Become a Partner", "/partners")}
             >
-              Explore Partners
+              Become a Partner
             </Button>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="animate-fade-up delay-500 mt-16 flex flex-wrap items-center justify-center gap-8 text-white/30">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse-glow" />
+              <span className="text-sm font-medium">750+ Members</span>
+            </div>
+            <div className="hidden h-4 w-px bg-white/10 sm:block" />
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse-glow" style={{ animationDelay: "1s" }} />
+              <span className="text-sm font-medium">50+ Events</span>
+            </div>
+            <div className="hidden h-4 w-px bg-white/10 sm:block" />
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-violet-400 animate-pulse-glow" style={{ animationDelay: "2s" }} />
+              <span className="text-sm font-medium">30+ Partners</span>
+            </div>
           </div>
         </div>
       </div>

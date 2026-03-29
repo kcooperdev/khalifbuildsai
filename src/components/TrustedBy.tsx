@@ -24,7 +24,6 @@ export function TrustedBy() {
     function animate() {
       if (!track) return;
       position -= speed;
-      // Each "set" is exactly half the track (we rendered 4 copies)
       const singleSetWidth = track.scrollWidth / 4;
       if (Math.abs(position) >= singleSetWidth) {
         position += singleSetWidth;
@@ -38,22 +37,22 @@ export function TrustedBy() {
     return () => cancelAnimationFrame(animationId);
   }, []);
 
-  // Quadruple the list for a truly seamless loop with no visible gap
   const repeated = [...partners, ...partners, ...partners, ...partners];
 
   return (
-    <section className="bg-black py-16 md:py-20 overflow-hidden">
+    <section className="relative bg-[#0A0A0A] py-14 md:py-16 overflow-hidden">
+      <div className="section-divider absolute top-0 left-0 right-0" />
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
-        <p className="mb-10 text-center text-[11px] font-medium uppercase tracking-[0.2em] text-white/30">
-          Community Partners
+        <p className="mb-8 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-white/25">
+          Trusted by community partners
         </p>
       </div>
 
       <div className="relative">
         {/* Left fade */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-black to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#0A0A0A] to-transparent" />
         {/* Right fade */}
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-black to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#0A0A0A] to-transparent" />
 
         {/* Scrolling track */}
         <div
@@ -63,7 +62,7 @@ export function TrustedBy() {
           {repeated.map((partner, i) => (
             <span
               key={`${partner}-${i}`}
-              className="whitespace-nowrap text-base font-semibold text-white/40 md:text-lg lg:text-xl select-none"
+              className="whitespace-nowrap text-base font-semibold text-white/30 transition-colors duration-300 hover:text-amber-400/60 md:text-lg lg:text-xl select-none cursor-default"
             >
               {partner}
             </span>

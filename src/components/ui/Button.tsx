@@ -29,7 +29,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
       "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 cursor-pointer text-sm tracking-[-0.01em]";
     const variantClasses = {
       primary:
-        "bg-white text-black hover:bg-white/90 active:scale-[0.98] rounded-full px-6 py-3",
+        "bg-white text-black hover:bg-white/90 hover:shadow-lg hover:shadow-white/10 active:scale-[0.98] rounded-full px-6 py-3",
       secondary:
         "bg-transparent border border-white/20 text-white hover:bg-white/5 hover:border-white/30 active:scale-[0.98] rounded-full px-6 py-3",
       ghost:
