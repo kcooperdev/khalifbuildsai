@@ -1,9 +1,6 @@
-"use client";
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Button from "@/components/ui/Button";
-import { capture } from "@/lib/posthog";
 
 const courses = [
   {
@@ -26,16 +23,6 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function AcademyPage() {
-  const handleNotifySubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value;
-
-    capture("academy_notify_submitted", {
-      email_provided: !!email,
-    });
-  };
-
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Header />
@@ -63,10 +50,10 @@ export default function AcademyPage() {
               <Button
                 variant="primary"
                 as="a"
-                href="#notify"
+                href="https://luma.com/blk-tech-connect"
                 className="px-8 py-3.5 text-base"
               >
-                Get Notified at Launch
+                Stay Updated on Events
               </Button>
             </div>
           </div>
@@ -109,33 +96,6 @@ export default function AcademyPage() {
           </div>
         </section>
 
-        {/* Notify form */}
-        <section id="notify" className="relative px-5 py-16 sm:px-8 md:py-24">
-          <div className="section-divider absolute top-0 left-0 right-0" />
-          <div className="mx-auto max-w-md text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-              Be the first to know.
-            </h2>
-            <p className="mt-3 text-[15px] text-white/40">
-              Drop your email and we&apos;ll notify you when the Academy
-              launches.
-            </p>
-            <form onSubmit={handleNotifySubmit} className="mt-8 flex gap-2">
-              <input
-                name="email"
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-5 py-3 text-sm text-white placeholder:text-white/25 focus:border-amber-400/30 focus:outline-none transition-colors duration-200"
-              />
-              <button
-                type="submit"
-                className="shrink-0 cursor-pointer rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition-all duration-200 hover:bg-white/90 hover:shadow-lg hover:shadow-white/10 active:scale-[0.98]"
-              >
-                Notify Me
-              </button>
-            </form>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>

@@ -111,12 +111,12 @@ export function HeroSection() {
             <div className="hidden h-4 w-px bg-white/10 sm:block" />
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse-glow" style={{ animationDelay: "1s" }} />
-              <span className="text-sm font-medium">50+ Events</span>
+              <span className="text-sm font-medium">10+ Events</span>
             </div>
             <div className="hidden h-4 w-px bg-white/10 sm:block" />
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-violet-400 animate-pulse-glow" style={{ animationDelay: "2s" }} />
-              <span className="text-sm font-medium">30+ Partners</span>
+              <span className="text-sm font-medium">10+ Partners</span>
             </div>
           </div>
         </div>

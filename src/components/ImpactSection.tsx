@@ -11,14 +11,14 @@ const stats = [
     color: "text-amber-400",
   },
   {
-    value: 50,
+    value: 10,
     suffix: "+",
     label: "Events Hosted",
     description: "Workshops, panels, meetups, and networking sessions",
     color: "text-violet-400",
   },
   {
-    value: 30,
+    value: 10,
     suffix: "+",
     label: "Partner Organizations",
     description: "Companies and communities committed to expanding access",

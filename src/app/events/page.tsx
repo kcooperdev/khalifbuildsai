@@ -6,6 +6,16 @@ import { capture } from "@/lib/posthog";
 
 const upcomingEvents = [
   {
+    title: "Cocktails & Community",
+    date: "Apr 25th, 2026",
+    time: "1:00 PM – 3:30 PM",
+    type: "In-Person",
+    location: "Impact Hub Baltimore, Baltimore, MD",
+    description:
+      "Connect, unwind, and build relationships over cocktails. A networking experience designed to bring the BLK Tech community together in a relaxed, social setting.",
+    rsvpLink: "https://luma.com/r57c0odc",
+  },
+  {
     title: "BTW Pre-Event: Tech At The Harbor",
     date: "Apr 23rd, 2026",
     time: "6:00 PM – 8:30 PM",
@@ -136,7 +146,7 @@ export default function EventsPage() {
                 Join the Community
               </a>
               <a
-                href="https://luma.com/calendar/manage/cal-64EiCORm0LBSWtj"
+                href="https://luma.com/calendar/manage/cal-Q2EAb5Q5bZceGaE"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-white/5 hover:border-white/30 active:scale-[0.98]"
