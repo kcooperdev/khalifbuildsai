@@ -18,7 +18,7 @@ const pillars = [
     ),
     color: "from-amber-400/20 to-amber-400/5",
     iconBg: "bg-amber-400/10 border-amber-400/20 text-amber-400",
-    href: "https://discord.gg/gWfhQFzbnB",
+    href: "https://discord.gg/ecQDYq8Apv",
     cta: "Join the Community",
     external: true,
   },

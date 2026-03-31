@@ -25,7 +25,7 @@ const featured = [
     title: "750+ AI Builders on Discord",
     description:
       "Join the community — connect with members, grow your network, and be part of a growing movement of people building with AI.",
-    href: "https://discord.gg/gWfhQFzbnB",
+    href: "https://discord.gg/ecQDYq8Apv",
     accent: "bg-emerald-400/10 border-emerald-400/20 text-emerald-400",
     external: true,
   },
@@ -33,7 +33,7 @@ const featured = [
 
 export function FeaturedSection() {
   return (
-    <section className="relative bg-[var(--surface-1)] px-5 py-24 sm:px-8 md:py-32">
+    <section className="relative bg-[var(--surface-1)] px-5 py-14 sm:px-8 sm:py-24 md:py-32">
       <div className="section-divider absolute top-0 left-0 right-0" />
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

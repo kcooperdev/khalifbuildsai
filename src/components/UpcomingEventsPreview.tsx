@@ -22,7 +22,7 @@ const events = [
 
 export function UpcomingEventsPreview() {
   return (
-    <section className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section className="relative px-5 py-14 sm:px-8 sm:py-24 md:py-32">
       <div className="section-divider absolute top-0 left-0 right-0" />
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

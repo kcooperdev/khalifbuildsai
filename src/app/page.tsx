@@ -16,19 +16,19 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/35 sm:mt-6 sm:text-lg">
-            Self-taught engineer helping you learn AI, build with AI,
-            and connect with other builders.
+            Free courses, a builder community, and everything you need
+            to start using AI — no coding or tech background required.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4">
             <Link
-              href="/academy"
+              href="/academy/free"
               className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98]"
             >
-              Explore the Academy
+              Start Free AI Course
             </Link>
             <Link
-              href="/community"
+              href="https://discord.gg/ecQDYq8Apv" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full border border-white/15 px-7 py-3 text-sm font-medium text-white/70 transition-all hover:bg-white/5 hover:border-white/25 active:scale-[0.98]"
             >
               Join the Community
@@ -37,88 +37,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About me */}
+      {/* What you get */}
       <section className="px-5 py-14 sm:px-8 sm:py-24 md:py-32">
         <div className="section-divider absolute left-0 right-0" />
         <div className="mx-auto max-w-2xl">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
-            About Me
-          </p>
-          <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
-            I taught myself to code, fell in love with AI, and built
-            what I wished I had.
-          </h2>
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-white/35 md:text-lg md:leading-relaxed">
-            <p>
-              No CS degree — just curiosity, late nights, and the internet.
-              When I discovered AI, everything changed. I saw a technology
-              that could level the playing field for anyone willing to learn.
-            </p>
-            <p>
-              So I built khalifbuildsai — an academy, a community, and a
-              platform to help others do the same thing I did: start from
-              scratch and build something real with AI.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Track record */}
-      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
-        <div className="mx-auto max-w-2xl">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
-            Track Record
+            What You Get
           </p>
           <div className="space-y-4">
-            <div className="rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5">
-              <h3 className="text-[15px] font-semibold text-white">Scaled a tech community from 0 to 900+ members offline</h3>
-              <p className="mt-1 text-[14px] text-white/30">Built and grew an in-person tech community in less than a year.</p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5">
-              <h3 className="text-[15px] font-semibold text-white">Founder, Baltimore Tech Week</h3>
-              <p className="mt-1 text-[14px] text-white/30">Created the first ever Baltimore Tech Week — bringing the city&apos;s tech community together.</p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5">
-              <h3 className="text-[15px] font-semibold text-white">Speaker & panelist</h3>
-              <p className="mt-1 text-[14px] text-white/30">Spoke at American University and panels on AI, community building, and self-teaching.</p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5">
-              <h3 className="text-[15px] font-semibold text-white">AI workshops</h3>
-              <p className="mt-1 text-[14px] text-white/30">Hands-on workshops teaching people how to use and build with artificial intelligence.</p>
-            </div>
-            <div className="rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5">
-              <h3 className="text-[15px] font-semibold text-white">Chapter Organizer, AI Collective — Baltimore</h3>
-              <p className="mt-1 text-[14px] text-white/30">Organizing the Baltimore chapter of AI Collective, bringing AI builders together locally.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What I offer — 3 simple blocks */}
-      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
-        <div className="section-divider absolute left-0 right-0" />
-        <div className="mx-auto max-w-2xl">
-          <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
-            What I&apos;m Building
-          </p>
-          <div className="space-y-4">
+            <Link
+              href="/academy/free"
+              className="group flex items-center justify-between rounded-xl border border-emerald-400/20 bg-emerald-400/[0.03] p-5 transition-all duration-300 hover:border-emerald-400/30 hover:bg-emerald-400/[0.05]"
+            >
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-[15px] font-semibold text-white">Free AI Course</h3>
+                  <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">FREE</span>
+                </div>
+                <p className="mt-1 text-[14px] text-white/30">7 lessons that take you from zero to understanding AI. No experience needed.</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-emerald-400/30 transition-transform group-hover:translate-x-1 group-hover:text-emerald-400/50"><path d="m9 18 6-6-6-6" /></svg>
+            </Link>
             <Link
               href="/academy"
               className="group flex items-center justify-between rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5 transition-all duration-300 hover:border-amber-400/20 hover:bg-[#111]"
             >
               <div>
-                <h3 className="text-[15px] font-semibold text-white">Academy</h3>
-                <p className="mt-1 text-[14px] text-white/30">AI courses for self-taught builders.</p>
+                <h3 className="text-[15px] font-semibold text-white">More Courses</h3>
+                <p className="mt-1 text-[14px] text-white/30">Prompt engineering, building with AI, and more coming soon.</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-white/20 transition-transform group-hover:translate-x-1 group-hover:text-white/40"><path d="m9 18 6-6-6-6" /></svg>
             </Link>
             <Link
-              href="/community"
+              href="https://discord.gg/ecQDYq8Apv" target="_blank" rel="noopener noreferrer"
               className="group flex items-center justify-between rounded-xl border border-white/[0.06] bg-[#0A0A0A] p-5 transition-all duration-300 hover:border-violet-400/20 hover:bg-[#111]"
             >
               <div>
                 <h3 className="text-[15px] font-semibold text-white">Community</h3>
-                <p className="mt-1 text-[14px] text-white/30">A growing community of AI builders on Discord.</p>
+                <p className="mt-1 text-[14px] text-white/30">Join other people learning and building with AI. Free on Discord.</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-white/20 transition-transform group-hover:translate-x-1 group-hover:text-white/40"><path d="m9 18 6-6-6-6" /></svg>
             </Link>
@@ -128,11 +84,31 @@ export default function Home() {
             >
               <div>
                 <h3 className="text-[15px] font-semibold text-white">Speaking</h3>
-                <p className="mt-1 text-[14px] text-white/30">Keynotes, panels, and AI workshops.</p>
+                <p className="mt-1 text-[14px] text-white/30">Keynotes, panels, and hands-on AI workshops.</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-white/20 transition-transform group-hover:translate-x-1 group-hover:text-white/40"><path d="m9 18 6-6-6-6" /></svg>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Simple CTA */}
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
+        <div className="mx-auto max-w-2xl text-center">
+          <div className="section-divider mb-10" />
+          <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+            Ready to start?
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-white/35">
+            The free course takes you from &quot;what is AI?&quot; to actually
+            understanding how it works. Just enter your email and start learning.
+          </p>
+          <Link
+            href="/academy/free"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98]"
+          >
+            Start Free AI Course
+          </Link>
         </div>
       </section>
     </main>

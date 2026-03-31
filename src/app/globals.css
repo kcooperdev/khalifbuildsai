@@ -71,8 +71,9 @@ body {
   position: absolute;
   top: 40%;
   right: -10%;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
   background: radial-gradient(
     circle at center,
     rgba(139, 92, 246, 0.06) 0%,
@@ -128,6 +129,16 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ─── Interactive text glow ─── */
+.text-gradient-warm {
+  transition: filter 0.3s ease;
+}
+
+.text-gradient-warm:hover {
+  filter: brightness(1.3);
+  cursor: default;
 }
 
 /* ─── Card Glow on Hover ─── */

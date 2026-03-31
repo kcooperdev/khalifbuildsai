@@ -26,7 +26,7 @@ export default function CommunityPage() {
             and helping each other grow. Free to join.
           </p>
           <a
-            href="https://discord.gg/gWfhQFzbnB"
+            href="https://discord.gg/ecQDYq8Apv"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98]"

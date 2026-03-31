@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Logo } from "./ui/Logo";
 
 const navLinks = [
-  { href: "/academy", label: "Academy" },
+  { href: "/academy", label: "Courses" },
   { href: "/community", label: "Community" },
   { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
@@ -12,7 +12,7 @@ const navLinks = [
 
 const socialLinks = [
   { href: "https://www.instagram.com/khalifbuildsai/", label: "Instagram", external: true },
-  { href: "https://discord.gg/gWfhQFzbnB", label: "Discord", external: true },
+  { href: "https://discord.gg/ecQDYq8Apv", label: "Discord", external: true },
 ];
 
 function LinkColumn({

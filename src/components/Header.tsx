@@ -6,7 +6,7 @@ import { NavLink } from "./ui/NavLink";
 import Button from "./ui/Button";
 
 const navLinks = [
-  { href: "/academy", label: "Academy" },
+  { href: "/academy", label: "Courses" },
   { href: "/community", label: "Community" },
   { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
@@ -49,7 +49,9 @@ export function Header() {
           <Button
             variant="primary"
             as="a"
-            href="/community"
+            href="https://discord.gg/ecQDYq8Apv"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-5 py-2 text-[13px]"
           >
             Join Community
@@ -97,7 +99,9 @@ export function Header() {
               <Button
                 variant="primary"
                 as="a"
-                href="/community"
+                href="https://discord.gg/ecQDYq8Apv"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full justify-center px-5 py-2.5 text-sm"
               >
                 Join Community

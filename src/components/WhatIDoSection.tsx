@@ -54,7 +54,7 @@ export function WhatIDoSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative px-5 py-24 sm:px-8 md:py-32">
+    <section ref={sectionRef} className="relative px-5 py-14 sm:px-8 sm:py-24 md:py-32">
       <div className="section-divider absolute top-0 left-0 right-0" />
       <div className="mx-auto max-w-6xl">
         <div className="mb-16 max-w-2xl">

@@ -5,7 +5,7 @@ import { capture } from "@/lib/posthog";
 
 export function CommunitySection() {
   return (
-    <section className="relative overflow-hidden px-5 py-24 sm:px-8 md:py-32">
+    <section className="relative overflow-hidden px-5 py-14 sm:px-8 sm:py-24 md:py-32">
       <div className="section-divider absolute top-0 left-0 right-0" />
 
       {/* Background glow */}
@@ -31,7 +31,7 @@ export function CommunitySection() {
           <Button
             variant="primary"
             as="a"
-            href="https://discord.gg/gWfhQFzbnB"
+            href="https://discord.gg/ecQDYq8Apv"
             className="px-8 py-3.5 text-base"
             onClick={() =>
               capture("hero_cta_clicked", {

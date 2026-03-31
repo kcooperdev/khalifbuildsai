@@ -44,19 +44,13 @@ export default function SpeakingPage() {
             Keynotes, panels, workshops, and fireside chats. I talk about
             AI, self-teaching, and building community.
           </p>
-          <a
-            href="mailto:speaking@khalifbuildsai.com"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98]"
-          >
-            Get in Touch
-          </a>
         </div>
       </section>
 
       {/* Topics */}
-      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
+      <section className="px-5 sm:px-8">
         <div className="mx-auto max-w-2xl">
-          <h2 className="mb-8 text-xl font-bold text-white">Topics I speak on</h2>
+          <h2 className="mb-6 text-lg font-bold text-white">Topics I speak on</h2>
           <div className="space-y-4">
             {topics.map((topic) => (
               <div
@@ -71,14 +65,24 @@ export default function SpeakingPage() {
         </div>
       </section>
 
-      {/* Past speaking */}
-      <section className="relative px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
-        <div className="section-divider absolute top-0 left-0 right-0" />
-        <div className="mx-auto max-w-2xl pt-12 text-center sm:pt-16 md:pt-24">
-          <p className="text-[13px] text-white/20">
-            Previously featured at Technical.ly&apos;s RealLIST Innovators
-            and WMAR-2 News Baltimore.
+      {/* Book a call */}
+      <section className="px-5 pt-10 pb-14 sm:px-8 sm:pb-24 md:pb-32">
+        <div className="mx-auto max-w-2xl">
+          <div className="section-divider mb-8" />
+          <h2 className="mb-2 text-lg font-bold text-white">Book a call</h2>
+          <p className="mb-6 text-[14px] text-white/30">
+            Interested in having me speak at your event? Book a 15-minute call and let&apos;s chat.
           </p>
+          <div className="overflow-hidden rounded-xl border border-white/[0.06]">
+            <iframe
+              src="https://tidycal.com/book-a-session/khalifbuildsai"
+              width="100%"
+              height={450}
+              frameBorder="0"
+              title="Book a speaking inquiry call"
+              className="bg-white sm:h-[600px]"
+            />
+          </div>
         </div>
       </section>
     </main>
