@@ -1,17 +1,13 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | BLK Tech Connect",
-  description: "Privacy Policy for BLK Tech Connect.",
+  title: "Privacy | khalifbuildsai",
+  description: "Privacy Policy for khalifbuildsai.",
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-black">
-      <Header />
-      <main>
+    <main>
         {/* Hero */}
         <section className="relative overflow-hidden px-5 pb-8 pt-20 sm:px-8 md:pb-12 md:pt-28">
           <div className="hero-glow" aria-hidden />
@@ -153,8 +149,6 @@ export default function PrivacyPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </main>
   );
 }

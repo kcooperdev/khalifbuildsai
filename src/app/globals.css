@@ -2,8 +2,11 @@
 @plugin "daisyui";
 
 :root {
-  --background: #0A0A0A;
+  --background: #050505;
   --foreground: #ffffff;
+  --surface-1: #0A0A0A;
+  --surface-2: #111111;
+  --surface-3: #1A1A1A;
   --accent-warm: #F59E0B;
   --accent-orange: #F97316;
   --accent-violet: #8B5CF6;
@@ -50,12 +53,12 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -55%);
-  width: 900px;
-  height: 600px;
+  width: 1000px;
+  height: 700px;
   background: radial-gradient(
     ellipse at center,
-    rgba(245, 158, 11, 0.06) 0%,
-    rgba(249, 115, 22, 0.03) 30%,
+    rgba(245, 158, 11, 0.08) 0%,
+    rgba(249, 115, 22, 0.04) 30%,
     rgba(139, 92, 246, 0.02) 50%,
     transparent 70%
   );
@@ -71,14 +74,14 @@ body {
   height: 500px;
   background: radial-gradient(
     circle at center,
-    rgba(139, 92, 246, 0.05) 0%,
+    rgba(139, 92, 246, 0.06) 0%,
     transparent 70%
   );
   pointer-events: none;
   z-index: 0;
 }
 
-/* ─── Animated Gradient Text ─── */
+/* ─── Gradient Text ─── */
 .text-gradient-warm {
   background: linear-gradient(
     135deg,
@@ -108,6 +111,18 @@ body {
     #F59E0B 0%,
     #F97316 40%,
     #8B5CF6 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-signature {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #F59E0B 50%,
+    #F97316 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -152,10 +167,20 @@ body {
 .dot-grid {
   background-image: radial-gradient(
     circle at 1px 1px,
-    rgba(255, 255, 255, 0.05) 1px,
+    rgba(255, 255, 255, 0.04) 1px,
     transparent 0
   );
   background-size: 32px 32px;
+}
+
+/* ─── Noise overlay ─── */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ─── Scroll Animations ─── */
@@ -171,12 +196,8 @@ body {
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes scale-in {
@@ -190,44 +211,19 @@ body {
   }
 }
 
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .animate-fade-up {
@@ -242,20 +238,17 @@ body {
   animation: scale-in 0.5s ease-out both;
 }
 
-.animate-slide-in-left {
-  animation: slide-in-left 0.6s ease-out both;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.6s ease-out both;
-}
-
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
 }
 
 /* Stagger delays */
@@ -267,24 +260,6 @@ body {
 .delay-600 { animation-delay: 600ms; }
 .delay-700 { animation-delay: 700ms; }
 .delay-800 { animation-delay: 800ms; }
-
-/* ─── Infinite Scroll Carousel ─── */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-scroll-left {
-  animation: scroll-left 25s linear infinite;
-}
-
-.animate-scroll-left:hover {
-  animation-play-state: paused;
-}
 
 /* ─── Interactive Border Gradient ─── */
 .border-gradient {
@@ -301,9 +276,9 @@ body {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(245, 158, 11, 0.2) 0%,
+    rgba(245, 158, 11, 0.3) 0%,
     rgba(139, 92, 246, 0.2) 50%,
-    rgba(16, 185, 129, 0.2) 100%
+    rgba(245, 158, 11, 0.1) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -319,18 +294,6 @@ body {
   opacity: 1;
 }
 
-/* ─── Warm accent line ─── */
-.accent-line {
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    #F59E0B 0%,
-    #F97316 50%,
-    #8B5CF6 100%
-  );
-  border-radius: 2px;
-}
-
 /* ─── Section divider ─── */
 .section-divider {
   border: none;
@@ -344,22 +307,6 @@ body {
     transparent 100%
   );
   margin-bottom: 2rem;
-}
-
-/* ─── Counter Animation ─── */
-@keyframes count-up {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-count {
-  animation: count-up 0.8s ease-out both;
 }
 
 /* ─── Glassmorphism ─── */
@@ -380,20 +327,43 @@ body {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245, 158, 11, 0.1);
 }
 
-/* ─── Marquee for testimonials ─── */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* ─── Premium card style ─── */
+.premium-card {
+  background: var(--surface-2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
 }
 
-.animate-marquee {
-  animation: marquee 30s linear infinite;
+.premium-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--surface-3);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
-.animate-marquee:hover {
+/* ─── Accent line ─── */
+.accent-line {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #F59E0B 0%,
+    #F97316 50%,
+    #8B5CF6 100%
+  );
+  border-radius: 2px;
+}
+
+/* ─── Scrolling marquee ─── */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 25s linear infinite;
+}
+
+.animate-scroll-left:hover {
   animation-play-state: paused;
 }

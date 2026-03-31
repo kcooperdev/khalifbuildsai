@@ -4,6 +4,10 @@ export { Footer } from "./Footer";
 
 // Section components
 export { HeroSection } from "./HeroSection";
+export { WhatIDoSection } from "./WhatIDoSection";
+export { FeaturedSection } from "./FeaturedSection";
+export { UpcomingEventsPreview } from "./UpcomingEventsPreview";
+export { CommunitySection } from "./CommunitySection";
 export { AlertBanner } from "./AlertBanner";
 export { TrustedBy } from "./TrustedBy";
 export { EcosystemSection } from "./EcosystemSection";

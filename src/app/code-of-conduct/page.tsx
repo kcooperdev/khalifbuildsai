@@ -1,11 +1,9 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Code of Conduct | BLK Tech Connect",
+  title: "Code of Conduct | khalifbuildsai",
   description:
-    "Our community guidelines and code of conduct for all BLK Tech Connect spaces, events, and programs.",
+    "Our community guidelines and code of conduct for all khalifbuildsai spaces, events, and programs.",
 };
 
 const principles = [
@@ -17,7 +15,7 @@ const principles = [
   {
     title: "Inclusivity",
     description:
-      "Our spaces are for everyone. We actively work to ensure that all voices are heard, valued, and uplifted — especially those that have been historically marginalized in tech.",
+      "Our spaces are for everyone. We actively work to ensure that all voices are heard, valued, and uplifted — especially those that have been historically marginalized in AI and tech.",
   },
   {
     title: "Collaboration Over Competition",
@@ -54,9 +52,7 @@ const unacceptable = [
 
 export default function CodeOfConductPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
-      <Header />
-      <main>
+    <main>
         {/* Hero */}
         <section className="relative overflow-hidden px-5 pb-16 pt-20 sm:px-8 md:pb-24 md:pt-28">
           <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />
@@ -70,9 +66,9 @@ export default function CodeOfConductPage() {
               <span className="text-gradient-warm">Conduct.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/50 md:text-lg md:leading-relaxed">
-              BLK Tech Connect is built on trust, respect, and shared purpose.
+              BLK AI Connect is built on trust, respect, and shared purpose.
               This code of conduct applies to all our spaces — online and
-              in-person — including events, the BLK Tech Community, social media, and any
+              in-person — including events, the BLK AI Community, social media, and any
               community interaction.
             </p>
           </div>
@@ -90,7 +86,7 @@ export default function CodeOfConductPage() {
             </h2>
             <div className="space-y-6 text-base leading-relaxed text-white/50 md:text-lg md:leading-relaxed">
               <p>
-                As members, contributors, and leaders of BLK Tech Connect, we
+                As members, contributors, and leaders of BLK AI Connect, we
                 pledge to make participation in our community a
                 harassment-free experience for everyone. We are dedicated to
                 providing a welcoming, safe, and supportive environment where
@@ -145,7 +141,7 @@ export default function CodeOfConductPage() {
               Unacceptable behavior.
             </h2>
             <p className="mb-8 text-base leading-relaxed text-white/50 md:text-lg md:leading-relaxed">
-              The following behaviors are not tolerated in any BLK Tech Connect
+              The following behaviors are not tolerated in any BLK AI Connect
               space. Violations may result in removal from the community.
             </p>
             <ul className="space-y-4">
@@ -197,15 +193,13 @@ export default function CodeOfConductPage() {
                   Community leaders will review all reports and respond in a way
                   that is appropriate to the circumstances. Actions may include
                   a warning, temporary suspension, or permanent removal from
-                  BLK Tech Connect spaces. We prioritize the safety of our
+                  BLK AI Connect spaces. We prioritize the safety of our
                   community above all else.
                 </p>
               </div>
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </main>
   );
 }

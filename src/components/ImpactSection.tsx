@@ -7,7 +7,7 @@ const stats = [
     value: 750,
     suffix: "+",
     label: "Community Members",
-    description: "Technologists, founders, and innovators building together",
+    description: "AI practitioners, founders, and innovators building together",
     color: "text-amber-400",
   },
   {
@@ -28,7 +28,7 @@ const stats = [
     value: 100,
     suffix: "+",
     label: "Career Connections",
-    description: "Direct pathways from community to high-growth tech careers",
+    description: "Direct pathways from community to high-growth AI careers",
     color: "text-rose-400",
   },
 ];

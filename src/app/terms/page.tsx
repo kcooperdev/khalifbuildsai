@@ -1,17 +1,13 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | BLK Tech Connect",
-  description: "Terms of Service for BLK Tech Connect.",
+  title: "Terms | khalifbuildsai",
+  description: "Terms of Service for khalifbuildsai.",
 };
 
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-black">
-      <Header />
-      <main>
+    <main>
         {/* Hero */}
         <section className="relative overflow-hidden px-5 pb-8 pt-20 sm:px-8 md:pb-12 md:pt-28">
           <div className="hero-glow" aria-hidden />
@@ -33,7 +29,7 @@ export default function TermsPage() {
                 1. Acceptance of Terms
               </h2>
               <p className="text-sm leading-relaxed text-white/40">
-                By accessing and using BLK Tech Connect (&quot;the
+                By accessing and using BLK AI Connect (&quot;the
                 Platform&quot;), you agree to be bound by these Terms of
                 Service. If you do not agree to these terms, please do not use
                 our services.
@@ -45,8 +41,8 @@ export default function TermsPage() {
                 2. Description of Service
               </h2>
               <p className="text-sm leading-relaxed text-white/40">
-                BLK Tech Connect provides a community platform, career board,
-                events, and educational resources for Black technologists,
+                BLK AI Connect provides a community platform, career board,
+                events, and educational resources for Black AI practitioners,
                 founders, and innovators. Our services include but are not
                 limited to: community forums, job listings, event management,
                 newsletters, and educational content.
@@ -110,8 +106,8 @@ export default function TermsPage() {
                 5. Intellectual Property
               </h2>
               <p className="text-sm leading-relaxed text-white/40">
-                All content on BLK Tech Connect, including text, graphics,
-                logos, and software, is the property of BLK Tech Connect or its
+                All content on BLK AI Connect, including text, graphics,
+                logos, and software, is the property of BLK AI Connect or its
                 content suppliers and is protected by intellectual property laws.
                 You may not reproduce, distribute, or create derivative works
                 from any content without our express written permission.
@@ -124,7 +120,7 @@ export default function TermsPage() {
               </h2>
               <p className="text-sm leading-relaxed text-white/40">
                 Job listings on our Career Board are provided for informational
-                purposes. BLK Tech Connect does not guarantee the accuracy of
+                purposes. BLK AI Connect does not guarantee the accuracy of
                 job listings and is not responsible for employment decisions made
                 by third-party employers. We are not a party to any employment
                 agreement between you and an employer.
@@ -136,7 +132,7 @@ export default function TermsPage() {
                 7. Limitation of Liability
               </h2>
               <p className="text-sm leading-relaxed text-white/40">
-                BLK Tech Connect shall not be liable for any indirect,
+                BLK AI Connect shall not be liable for any indirect,
                 incidental, special, consequential, or punitive damages arising
                 out of or relating to your use of the platform. Our total
                 liability shall not exceed the amount you paid us, if any, in
@@ -185,8 +181,6 @@ export default function TermsPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </main>
   );
 }

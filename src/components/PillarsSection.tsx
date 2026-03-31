@@ -7,7 +7,7 @@ const pillars = [
   {
     title: "Community & Connection",
     description:
-      "Join the BLK Tech Community — connect with members, grow your network, and be part of a support system that extends beyond the screen.",
+      "Join the BLK AI Community — connect with members, grow your network, and be part of a support system that extends beyond the screen.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -25,7 +25,7 @@ const pillars = [
   {
     title: "Events & Workshops",
     description:
-      "Monthly meetups, panels, happy hours, and hands-on workshops — both in-person and virtual. Learn from industry leaders and grow your network in a supportive environment.",
+      "Monthly AI meetups, panels, happy hours, and hands-on workshops — both in-person and virtual. Learn from AI leaders and grow your network in a supportive environment.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
@@ -43,7 +43,7 @@ const pillars = [
   {
     title: "Academy & Education",
     description:
-      "Hands-on courses in web development, UI/UX design, data science, and tech leadership. Building the skills and confidence to thrive in a rapidly changing world.",
+      "Hands-on courses in AI fundamentals, prompt engineering, building with AI, and AI for business. Building the skills and confidence to thrive in the age of AI.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
@@ -59,7 +59,7 @@ const pillars = [
   {
     title: "Career Pathways",
     description:
-      "Direct access to opportunities from partner companies committed to expanding access. Resume reviews, interview prep, and a talent pipeline that connects community to career.",
+      "Direct access to AI career opportunities from partner companies. Resume reviews, interview prep, and a talent pipeline that connects community to career in AI.",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 20V10" />

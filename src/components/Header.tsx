@@ -6,11 +6,10 @@ import { NavLink } from "./ui/NavLink";
 import Button from "./ui/Button";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/ecosystem", label: "Ecosystem" },
-  { href: "/events", label: "Events" },
   { href: "/academy", label: "Academy" },
-  { href: "/press", label: "News" },
+  { href: "/community", label: "Community" },
+  { href: "/speaking", label: "Speaking" },
+  { href: "/about", label: "About" },
 ];
 
 export function Header() {
@@ -29,11 +28,11 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-[#0A0A0A]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/20"
+          ? "bg-[#050505]/80 backdrop-blur-2xl border-b border-white/[0.06] shadow-lg shadow-black/20"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <Logo />
 
         {/* Desktop navigation */}
@@ -50,10 +49,10 @@ export function Header() {
           <Button
             variant="primary"
             as="a"
-            href="/get-involved"
+            href="/community"
             className="px-5 py-2 text-[13px]"
           >
-            Get Involved
+            Join Community
           </Button>
         </div>
 
@@ -66,28 +65,12 @@ export function Header() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M18 6 6 18" />
               <path d="m6 6 12 12" />
             </svg>
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M4 6h16" />
               <path d="M4 12h16" />
               <path d="M4 18h16" />
@@ -98,7 +81,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="border-t border-white/[0.06] bg-[#0A0A0A]/95 backdrop-blur-xl md:hidden animate-fade-in">
+        <div className="border-t border-white/[0.06] bg-[#050505]/95 backdrop-blur-2xl md:hidden animate-fade-in">
           <nav className="flex flex-col px-5 py-4">
             {navLinks.map((link) => (
               <NavLink
@@ -114,10 +97,10 @@ export function Header() {
               <Button
                 variant="primary"
                 as="a"
-                href="/get-involved"
+                href="/community"
                 className="w-full justify-center px-5 py-2.5 text-sm"
               >
-                Get Involved
+                Join Community
               </Button>
             </div>
           </nav>

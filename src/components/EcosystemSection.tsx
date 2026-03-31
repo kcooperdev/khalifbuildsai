@@ -64,8 +64,8 @@ const CalendarIcon = () => (
 );
 
 const jobListings = [
-  { title: "Senior Product Designer" },
-  { title: "Full Stack Engineer" },
+  { title: "AI Engineer" },
+  { title: "Machine Learning Engineer" },
 ];
 
 export function EcosystemSection() {
@@ -115,9 +115,9 @@ export function EcosystemSection() {
               </CardIcon>
               <CardTitle>Community & Networking</CardTitle>
               <CardDescription>
-                Join the BLK Tech Community — connect with members, grow your
+                Join the BLK AI Community — connect with members, grow your
                 network, access mentorship circles, job boards, event tickets,
-                and resources.
+                and AI resources.
               </CardDescription>
               <CardFooter>
                 <div className="flex -space-x-2">
@@ -142,7 +142,7 @@ export function EcosystemSection() {
               </CardIcon>
               <CardTitle>Talent Recruitment</CardTitle>
               <CardDescription>
-                Direct access to job listings from top tech partners committed
+                Direct access to AI job listings from top partners committed
                 to diversity.
               </CardDescription>
               <CardFooter>
@@ -170,7 +170,7 @@ export function EcosystemSection() {
               </CardIcon>
               <CardTitle>Events</CardTitle>
               <CardDescription>
-                Monthly online tech events, panels, happy hours, and workshops.
+                Monthly online AI events, panels, happy hours, and workshops.
               </CardDescription>
               <CardFooter>
                 <Link

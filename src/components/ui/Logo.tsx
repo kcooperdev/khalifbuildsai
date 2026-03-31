@@ -1,35 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export interface LogoProps {
   className?: string;
   variant?: "full" | "icon" | "footer";
 }
 
-const logoSizes = {
-  full: { width: 140, height: 128 },
-  icon: { width: 88, height: 80 },
-  footer: { width: 77, height: 70 },
+const sizes = {
+  full: "text-lg",
+  icon: "text-base",
+  footer: "text-base",
 };
 
 export function Logo({ className = "", variant = "full" }: LogoProps) {
-  const { width, height } = logoSizes[variant];
-
   return (
     <Link
       href="/"
       className={`flex items-center ${className}`}
-      aria-label="BLK Tech Connect homepage"
+      aria-label="khalifbuildsai homepage"
     >
-      <Image
-        src="/logo.png"
-        alt="BLK Tech Connect"
-        width={width}
-        height={height}
-        className="object-contain"
-        priority
-        unoptimized
-      />
+      <span className={`font-bold tracking-tight ${sizes[variant]}`}>
+        <span className="text-white">khalif</span>
+        <span className="text-gradient-warm">builds</span>
+        <span className="text-white/60">ai</span>
+      </span>
     </Link>
   );
 }

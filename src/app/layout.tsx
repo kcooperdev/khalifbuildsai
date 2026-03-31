@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BLK Tech Connect | Where Communities Grow Into Innovators",
+  title: "khalifbuildsai | Self-Taught Engineer Building with AI",
   description:
-    "BLK Tech Connect empowers communities to go beyond limits and build the knowledge needed to become the next generation of tech talent, innovators, and founders — strengthening local economies and expanding access to opportunity.",
+    "I taught myself to code, fell in love with AI, and now I help others do the same. Community, courses, events — all AI.",
 };
 
 export default function RootLayout({
@@ -28,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
