@@ -32,10 +32,9 @@ export function Callout({
   const style = variantStyles[variant];
 
   return (
-    <div
-      className={`my-6 rounded-xl border ${style.border} ${style.bg} p-5`}
-    >
-      <p className={`mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] ${style.labelColor}`}>
+    <div className={`my-6 rounded-xl border ${style.border} ${style.bg} p-5`}>
+      <p
+        className={`mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] ${style.labelColor}`}>
         {style.label}
       </p>
       <p className={`text-[14px] leading-relaxed ${style.text}`}>{content}</p>
