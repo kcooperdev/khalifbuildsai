@@ -98,7 +98,7 @@ export default function LessonPage() {
   const isLastFreeLesson = isFreeCourse && !nextLesson;
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <section className="px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24 md:pt-28">
         <div className="mx-auto max-w-2xl">
           <Link

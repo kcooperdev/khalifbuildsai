@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#050505]">
       {/* Hero */}
-      <section className="relative flex min-h-[60vh] items-center justify-center px-5 sm:min-h-[85vh] sm:px-8">
+      <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden px-5 sm:min-h-[85vh] sm:px-8">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
         <div className="hero-glow" aria-hidden />
 
@@ -38,7 +38,7 @@ export default function Home() {
       </section>
 
       {/* What you get */}
-      <section className="px-5 py-14 sm:px-8 sm:py-24 md:py-32">
+      <section className="relative overflow-hidden px-5 py-14 sm:px-8 sm:py-24 md:py-32">
         <div className="section-divider absolute left-0 right-0" />
         <div className="mx-auto max-w-2xl">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">

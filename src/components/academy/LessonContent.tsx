@@ -110,7 +110,7 @@ function TextBlock({ content }: { content: string }) {
 
   if (inTable) flushTable();
 
-  return <div>{elements}</div>;
+  return <div className="wrap-break-word">{elements}</div>;
 }
 
 export function LessonContent({ sections }: { sections: LessonSection[] }) {
