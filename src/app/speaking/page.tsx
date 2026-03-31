@@ -28,7 +28,7 @@ const topics = [
 export default function SpeakingPage() {
   return (
     <main>
-      <section className="relative overflow-hidden px-5 pb-16 pt-24 sm:px-8 md:pb-24 md:pt-32">
+      <section className="relative overflow-hidden px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24 md:pb-24 md:pt-32">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
         <div className="hero-glow" aria-hidden />
         <div className="relative z-10 mx-auto max-w-2xl text-center">
@@ -54,7 +54,7 @@ export default function SpeakingPage() {
       </section>
 
       {/* Topics */}
-      <section className="px-5 pb-24 sm:px-8 md:pb-32">
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
         <div className="mx-auto max-w-2xl">
           <h2 className="mb-8 text-xl font-bold text-white">Topics I speak on</h2>
           <div className="space-y-4">
@@ -72,9 +72,9 @@ export default function SpeakingPage() {
       </section>
 
       {/* Past speaking */}
-      <section className="relative px-5 pb-24 sm:px-8 md:pb-32">
+      <section className="relative px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
         <div className="section-divider absolute top-0 left-0 right-0" />
-        <div className="mx-auto max-w-2xl pt-16 text-center md:pt-24">
+        <div className="mx-auto max-w-2xl pt-12 text-center sm:pt-16 md:pt-24">
           <p className="text-[13px] text-white/20">
             Previously featured at Technical.ly&apos;s RealLIST Innovators
             and WMAR-2 News Baltimore.

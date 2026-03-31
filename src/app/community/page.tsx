@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function CommunityPage() {
   return (
     <main>
-      <section className="relative overflow-hidden px-5 pb-16 pt-24 sm:px-8 md:pb-24 md:pt-32">
+      <section className="relative overflow-hidden px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24 md:pb-24 md:pt-32">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
         <div className="hero-glow" aria-hidden />
         <div className="relative z-10 mx-auto max-w-2xl text-center">
@@ -38,7 +38,7 @@ export default function CommunityPage() {
       </section>
 
       {/* What you get */}
-      <section className="px-5 pb-24 sm:px-8 md:pb-32">
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
         <div className="mx-auto max-w-2xl">
           <h2 className="mb-8 text-xl font-bold text-white">What you get</h2>
           <div className="space-y-4">

@@ -4,23 +4,23 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#050505]">
       {/* Hero */}
-      <section className="relative flex min-h-[85vh] items-center justify-center px-5 sm:px-8">
+      <section className="relative flex min-h-[60vh] items-center justify-center px-5 sm:min-h-[85vh] sm:px-8">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
         <div className="hero-glow" aria-hidden />
 
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
             Learn AI.
             <br />
             <span className="text-gradient-warm">Build anything.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/35 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/35 sm:mt-6 sm:text-lg">
             Self-taught engineer helping you learn AI, build with AI,
             and connect with other builders.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4">
             <Link
               href="/academy"
               className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-medium text-black transition-all hover:bg-white/90 active:scale-[0.98]"
@@ -38,7 +38,7 @@ export default function Home() {
       </section>
 
       {/* About me */}
-      <section className="px-5 py-24 sm:px-8 md:py-32">
+      <section className="px-5 py-14 sm:px-8 sm:py-24 md:py-32">
         <div className="section-divider absolute left-0 right-0" />
         <div className="mx-auto max-w-2xl">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
@@ -64,7 +64,7 @@ export default function Home() {
       </section>
 
       {/* Track record */}
-      <section className="px-5 pb-24 sm:px-8 md:pb-32">
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
         <div className="mx-auto max-w-2xl">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
             Track Record
@@ -95,7 +95,7 @@ export default function Home() {
       </section>
 
       {/* What I offer — 3 simple blocks */}
-      <section className="px-5 pb-24 sm:px-8 md:pb-32">
+      <section className="px-5 pb-14 sm:px-8 sm:pb-24 md:pb-32">
         <div className="section-divider absolute left-0 right-0" />
         <div className="mx-auto max-w-2xl">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/80">
