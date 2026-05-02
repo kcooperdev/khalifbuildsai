@@ -7,7 +7,7 @@ import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import { PROJECTS, POSTS, NOW, type Post } from "@/lib/portfolio-data";
+import { PROJECTS, POSTS, type Post } from "@/lib/portfolio-data";
 import { Terminal } from "@/components/portfolio/Terminal";
 
 type Theme = "dark" | "light";
@@ -351,24 +351,6 @@ function NotesSection({ onOpen }: { onOpen: (post: Post) => void }) {
   );
 }
 
-function NowSection() {
-  return (
-    <section id="now">
-      <div className="shell">
-        <SectionHead n="04" label="now" tag="// updated 2026.04.30" />
-        <div className="now-grid">
-          {NOW.map((row) => (
-            <div className="nrow" key={row.k}>
-              <div className="k">{row.k}</div>
-              <div className="v">{row.v}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
   const links = [
     {
@@ -395,7 +377,7 @@ function Contact() {
   return (
     <section id="contact" className="contact">
       <div className="shell">
-        <SectionHead n="05" label="contact" tag="// say hi" />
+        <SectionHead n="04" label="contact" tag="// say hi" />
         <h3>
           Say hi — I&apos;m{" "}
           <span className="accent">@khalifbuildsai</span> almost everywhere.
@@ -460,7 +442,6 @@ export default function Home() {
         <About />
         <ProjectsSection />
         <NotesSection onOpen={setOpenPost} />
-        <NowSection />
         <Contact />
       </main>
       <SiteFooter />
