@@ -72,23 +72,78 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
 }
 @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
-/* Mobile-first: nav left, theme toggle right; minimum gaps */
+/* Mobile-first: burger left, theme toggle right; nav hidden by default */
 .topbar-inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 10px;
   padding: 12px 0;
-  font-size: 12px;
+  font-size: 13px;
+  position: relative;
 }
-.topbar nav {
-  display: flex; flex-wrap: wrap; gap: 14px;
-  min-width: 0;
+
+/* Hamburger button (mobile only) */
+.topbar-burger {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink-2);
+  transition: color .15s, border-color .15s, background .15s;
+  flex-shrink: 0;
 }
-.topbar nav a {
-  color: var(--ink-dim);
+.topbar-burger:hover, .topbar-burger:focus-visible {
+  color: var(--ink); border-color: var(--ink-dim);
+}
+.topbar-burger .burger-bars {
+  position: relative;
+  display: inline-block;
+  width: 18px; height: 12px;
+}
+.topbar-burger .burger-bars span {
+  position: absolute; left: 0; right: 0;
+  height: 1.5px; background: currentColor; border-radius: 1px;
+  transition: transform .2s ease, opacity .15s ease, top .2s ease;
+}
+.topbar-burger .burger-bars span:nth-child(1) { top: 0; }
+.topbar-burger .burger-bars span:nth-child(2) { top: 5px; }
+.topbar-burger .burger-bars span:nth-child(3) { top: 10px; }
+.topbar[data-open="true"] .burger-bars span:nth-child(1) {
+  top: 5px; transform: rotate(45deg);
+}
+.topbar[data-open="true"] .burger-bars span:nth-child(2) { opacity: 0; }
+.topbar[data-open="true"] .burger-bars span:nth-child(3) {
+  top: 5px; transform: rotate(-45deg);
+}
+
+/* Mobile drawer: slides down below topbar */
+.topbar-nav {
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  display: flex; flex-direction: column;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  padding: 8px var(--gutter) 16px;
+  font-size: 15px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height .25s ease, opacity .2s ease, padding .25s ease;
+}
+.topbar[data-open="true"] .topbar-nav {
+  max-height: 60vh;
+  opacity: 1;
+  pointer-events: auto;
+}
+.topbar-nav a {
+  color: var(--ink-2);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-2);
   transition: color .15s;
 }
-.topbar nav a:hover, .topbar nav a:focus-visible { color: var(--ink); }
-.topbar nav a.active { color: var(--accent); }
+.topbar-nav a:last-child { border-bottom: 0; }
+.topbar-nav a:hover, .topbar-nav a:focus-visible { color: var(--accent); }
 
 .theme-toggle {
   flex-shrink: 0;
@@ -97,29 +152,44 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
   color: var(--ink-dim);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border: 1px solid var(--rule);
   border-radius: 999px;
   background: transparent;
+  height: 38px;
 }
 .theme-toggle:hover { color: var(--ink); border-color: var(--ink-dim); }
 .theme-toggle .dot {
-  width: 7px; height: 7px; border-radius: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
   background: var(--accent);
 }
-.theme-toggle-label { display: none; }
+.theme-toggle-label { display: inline; }
 
-/* ≥480px: show theme label */
-@media (min-width: 480px) {
-  .theme-toggle { padding: 4px 10px; }
-  .theme-toggle .dot { width: 8px; height: 8px; }
-  .theme-toggle-label { display: inline; }
-}
-
-/* ≥640px: roomier spacing */
+/* ≥640px: switch to inline nav, hide hamburger */
 @media (min-width: 640px) {
   .topbar-inner { gap: 24px; padding: 14px 0; font-size: 12.5px; }
-  .topbar nav { gap: 18px; flex-wrap: nowrap; }
+  .topbar-burger { display: none; }
+  .topbar-nav {
+    position: static;
+    flex-direction: row;
+    gap: 18px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    pointer-events: auto;
+    font-size: 12.5px;
+    margin-right: auto;
+  }
+  .topbar-nav a {
+    padding: 0;
+    border-bottom: 0;
+    color: var(--ink-dim);
+  }
+  .topbar-nav a:hover, .topbar-nav a:focus-visible { color: var(--ink); }
+  .theme-toggle { height: auto; padding: 4px 10px; }
 }
 
 /* ── sections ───────────────────────────────────────────────────────── */

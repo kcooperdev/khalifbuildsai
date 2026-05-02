@@ -51,15 +51,47 @@ function TopBar({
   theme: Theme;
   toggleTheme: () => void;
 }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const navLinks = [
+    { href: "#projects", label: "projects" },
+    { href: "#notes", label: "notes" },
+    { href: "#about", label: "about" },
+    { href: "#contact", label: "contact" },
+  ];
+
   return (
-    <header className="topbar">
+    <header className="topbar" data-open={open ? "true" : "false"}>
       <div className="shell topbar-inner">
-        <nav>
-          <a href="#projects">projects</a>
-          <a href="#notes">notes</a>
-          <a href="#about">about</a>
-          <a href="#contact">contact</a>
+        <button
+          className="topbar-burger"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? "close menu" : "open menu"}
+          aria-expanded={open}
+          aria-controls="topbar-nav"
+        >
+          <span className="burger-bars" aria-hidden>
+            <span /><span /><span />
+          </span>
+        </button>
+
+        <nav id="topbar-nav" className="topbar-nav">
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+              {l.label}
+            </a>
+          ))}
         </nav>
+
         <button
           className="theme-toggle"
           onClick={toggleTheme}
