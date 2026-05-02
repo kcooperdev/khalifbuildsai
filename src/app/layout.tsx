@@ -1,25 +1,35 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { EasterEggs } from "@/components/EasterEggs";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
-  title: "khalifbuildsai | Self-Taught Engineer Building with AI",
+  title: "khalifbuildsai · ai tools, automations, and other cool things",
   description:
-    "I taught myself to code, fell in love with AI, and now I help others do the same. Community, courses, events — all AI.",
+    "Khalif — software engineer building AI tools, automations, and a 1,100+ member tech community.",
 };
+
+const themeInitScript = `
+  (function() {
+    try {
+      var saved = localStorage.getItem('kbai-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (e) {}
+  })();
+`;
 
 export default function RootLayout({
   children,
@@ -27,14 +37,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
-        <EasterEggs />
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
         {children}
-        <Footer />
       </body>
     </html>
   );
