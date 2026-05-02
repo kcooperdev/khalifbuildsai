@@ -7,6 +7,7 @@
   --display: var(--font-display), "Space Grotesk", var(--font-mono), "JetBrains Mono", ui-monospace, Menlo, monospace;
   --maxw: 920px;
   --gutter: clamp(20px, 5vw, 48px);
+  --gutter-bar: clamp(28px, 6vw, 48px);
 }
 
 /* ── DARK (default): warm phosphor, dialed way back ─────────────────── */
@@ -76,7 +77,7 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
 .topbar-inner {
   display: flex; align-items: center; justify-content: space-between;
   gap: 10px;
-  padding: 12px 0;
+  padding: 12px var(--gutter-bar);
   font-size: 13px;
   position: relative;
 }
@@ -167,7 +168,7 @@ h1, h2, h3, h4, h5, h6, p { margin: 0; }
 
 /* ≥640px: switch to inline nav, hide hamburger */
 @media (min-width: 640px) {
-  .topbar-inner { gap: 24px; padding: 14px 0; font-size: 12.5px; }
+  .topbar-inner { gap: 24px; padding: 14px var(--gutter); font-size: 12.5px; }
   .topbar-burger { display: none; }
   .topbar-nav {
     position: static;
