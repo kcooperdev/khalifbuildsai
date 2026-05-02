@@ -6,9 +6,7 @@ import { NavLink } from "./ui/NavLink";
 import Button from "./ui/Button";
 
 const navLinks = [
-  { href: "/academy", label: "Courses" },
   { href: "/community", label: "Community" },
-  { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
 ];
 

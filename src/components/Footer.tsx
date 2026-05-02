@@ -4,9 +4,7 @@ import Link from "next/link";
 import { Logo } from "./ui/Logo";
 
 const navLinks = [
-  { href: "/academy", label: "Courses" },
   { href: "/community", label: "Community" },
-  { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
 ];
 
