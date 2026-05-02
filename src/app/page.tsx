@@ -54,13 +54,6 @@ function TopBar({
   return (
     <header className="topbar">
       <div className="shell topbar-inner">
-        <a href="#top" className="brand" aria-label="khalifbuildsai home">
-          <b>khalif</b>
-          <span className="brand-builds">builds</span>
-          <span className="brand-ai">ai</span>
-          <span className="blink" aria-hidden />
-        </a>
-        <div className="spacer" />
         <nav>
           <a href="#projects">projects</a>
           <a href="#notes">notes</a>
@@ -73,7 +66,7 @@ function TopBar({
           aria-label="toggle theme"
         >
           <span className="dot" />
-          <span>{theme}</span>
+          <span className="theme-toggle-label">{theme}</span>
         </button>
       </div>
     </header>
