@@ -396,11 +396,6 @@ function Contact() {
       v: "linkedin.com/in/khalifbuildsai",
       href: "https://www.linkedin.com/in/khalifbuildsai",
     },
-    {
-      k: "bluesky",
-      v: "@khalifbuildsai.bsky.social",
-      href: "https://bsky.app/profile/khalifbuildsai.bsky.social",
-    },
   ];
   return (
     <section id="contact" className="contact">
