@@ -64,7 +64,6 @@ function staticOutput(cmd: string): string[] | null {
         "github     github.com/khalifbuildsai",
         "linkedin   linkedin.com/in/khalifbuildsai",
         "bluesky    @khalifbuildsai.bsky.social",
-        "twitter    @khalifbuildsai",
       ];
     case "whoami":
       return ["guest@khalifbuildsai"];

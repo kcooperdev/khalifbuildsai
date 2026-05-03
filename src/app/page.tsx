@@ -401,11 +401,6 @@ function Contact() {
       v: "@khalifbuildsai.bsky.social",
       href: "https://bsky.app/profile/khalifbuildsai.bsky.social",
     },
-    {
-      k: "twitter",
-      v: "@khalifbuildsai",
-      href: "https://twitter.com/khalifbuildsai",
-    },
   ];
   return (
     <section id="contact" className="contact">
