@@ -257,6 +257,15 @@ section + section { border-top: 1px solid var(--rule); }
   text-wrap: pretty;
 }
 .about p + p { margin-top: 16px; }
+.accent-link {
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  transition: color .15s, border-color .15s;
+}
+.accent-link:hover, .accent-link:focus-visible {
+  color: var(--accent-2);
+  border-bottom-color: var(--accent-2);
+}
 
 /* ── filter bar ─────────────────────────────────────────────────────── */
 .filter-bar {

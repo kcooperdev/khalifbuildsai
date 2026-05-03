@@ -158,8 +158,16 @@ function About() {
           things that scratch an itch.
         </p>
         <p>
-          I also built and run a tech community of{" "}
-          <span className="accent">1,100+ members</span>, host AI workshops,
+          I also built and run a{" "}
+          <a
+            href="https://techafterdark.live"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="accent-link"
+          >
+            tech community
+          </a>{" "}
+          of <span className="accent">1,100+ members</span>, host AI workshops,
           and spend a lot of my free time exploring whatever new model,
           framework, or weird idea is making the rounds. I&apos;m genuinely
           passionate about tech — the craft of it, the people in it, and the
