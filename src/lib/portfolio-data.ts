@@ -38,7 +38,6 @@ const WHATS_FOR_DINNER_README = `# What's for Dinner
 
 ### AI-powered fridge scanner. Snap a photo, get a recipe.
 
-![Day](https://img.shields.io/badge/DAY-01_%2F_30-10b981?style=for-the-badge&labelColor=000000)
 ![Stack](https://img.shields.io/badge/STACK-Next.js_%7C_Tailwind_%7C_Gemini-ffffff?style=for-the-badge&labelColor=000000)
 ![Status](https://img.shields.io/badge/STATUS-WIP-f59e0b?style=for-the-badge&labelColor=000000)
 
