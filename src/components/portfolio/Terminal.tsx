@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  KeyboardEvent,
-} from "react";
-import { PROJECTS, NOW } from "@/lib/portfolio-data";
+import { useState, useEffect, useRef, useCallback, KeyboardEvent } from "react";
+import { PROJECTS } from "@/lib/portfolio-data";
 
 type Theme = "dark" | "light";
 
@@ -26,7 +20,6 @@ const HELP_LINES = [
   "  about             who is khalif",
   "  projects          list projects",
   "  open <id>         scroll to a project (e.g. open community-01)",
-  "  now               what i'm doing right now",
   "  contact           how to reach me",
   "  theme <name>      dark | light",
   "  whoami            you, presumably",
@@ -57,8 +50,6 @@ function staticOutput(cmd: string): string[] | null {
         "",
         "use `open <id>` to jump to a card.",
       ];
-    case "now":
-      return NOW.map((n) => `${n.k.padEnd(12)} ${n.v}`);
     case "contact":
       return [
         "github     github.com/khalifbuildsai",
@@ -200,8 +191,7 @@ export function Terminal({ open, onClose, setTheme }: TerminalProps) {
         className="term-window"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
-        aria-modal="true"
-      >
+        aria-modal="true">
         <div className="term-titlebar">
           <span className="term-dot" />
           <span className="term-dot" />
@@ -210,16 +200,14 @@ export function Terminal({ open, onClose, setTheme }: TerminalProps) {
           <button
             className="term-close"
             onClick={onClose}
-            aria-label="close terminal"
-          >
+            aria-label="close terminal">
             ×
           </button>
         </div>
         <div
           className="term-body"
           ref={scrollRef}
-          onClick={() => inputRef.current?.focus()}
-        >
+          onClick={() => inputRef.current?.focus()}>
           {history.map((h, i) => (
             <div key={i} className={`term-line ${h.type}`}>
               {h.type === "in" && (

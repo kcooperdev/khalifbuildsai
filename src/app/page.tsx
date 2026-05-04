@@ -7,8 +7,16 @@ import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import { PROJECTS, POSTS, type Post } from "@/lib/portfolio-data";
+import {
+  PROJECTS,
+  FOLDERS,
+  type Post,
+  type Folder,
+  type Project,
+} from "@/lib/portfolio-data";
 import { Terminal } from "@/components/portfolio/Terminal";
+import { CodePlayground } from "@/components/portfolio/CodePlayground";
+import { ProjectModal } from "@/components/portfolio/ProjectModal";
 
 type Theme = "dark" | "light";
 
@@ -178,7 +186,11 @@ function About() {
   );
 }
 
-function ProjectsSection() {
+function ProjectsSection({
+  onOpen,
+}: {
+  onOpen: (project: Project) => void;
+}) {
   const allItems = PROJECTS;
   const tags = useMemo(() => {
     const set = new Set(allItems.map((p) => p.tag));
@@ -225,8 +237,11 @@ function ProjectsSection() {
               className="proj-row"
               id={`project-${p.id}`}
               key={p.id}
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href={p.repo ?? "#"}
+              onClick={(e) => {
+                e.preventDefault();
+                onOpen(p);
+              }}
             >
               <div className="pn">
                 {String(start + i + 1).padStart(2, "0")}
@@ -334,9 +349,18 @@ function PostModal({
           <div className="post-excerpt">{post.excerpt}</div>
           <div className="post-rule" />
           <div className="post-prose">
-            {post.body.map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
+            {post.body.map((block, i) => {
+              if (block.type === "playground") {
+                return (
+                  <CodePlayground
+                    key={i}
+                    initialCode={block.code}
+                    label={block.label}
+                  />
+                );
+              }
+              return <p key={i}>{block.text}</p>;
+            })}
           </div>
           <div className="post-foot">
             <span className="dim">— khalif</span>
@@ -351,33 +375,107 @@ function PostModal({
 }
 
 function NotesSection({ onOpen }: { onOpen: (post: Post) => void }) {
+  const [activeFolderId, setActiveFolderId] = useState<string | null>(null);
+  const activeFolder: Folder | null =
+    FOLDERS.find((f) => f.id === activeFolderId) ?? null;
+
+  const totalPosts = useMemo(
+    () => FOLDERS.reduce((n, f) => n + f.posts.length, 0),
+    [],
+  );
+
+  const tag = activeFolder
+    ? `// ${activeFolder.posts.length} ${activeFolder.posts.length === 1 ? "post" : "posts"}`
+    : `// ${FOLDERS.length} folders · ${totalPosts} posts`;
+
   return (
     <section id="notes">
       <div className="shell">
-        <SectionHead n="03" label="notes" tag={`// ${POSTS.length} posts`} />
-        <div className="notes">
-          {POSTS.map((p, i) => (
-            <a
-              className="note-row"
-              key={i}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                onOpen(p);
-              }}
+        <SectionHead n="03" label="notes" tag={tag} />
+
+        <div className="notes-path">
+          <button
+            className="notes-crumb"
+            onClick={() => setActiveFolderId(null)}
+            aria-label="back to all folders"
+            disabled={!activeFolder}
+          >
+            ~/notes
+          </button>
+          {activeFolder && (
+            <>
+              <span className="notes-sep">/</span>
+              <span className="notes-crumb current">{activeFolder.name}</span>
+            </>
+          )}
+          {activeFolder && (
+            <button
+              className="notes-back"
+              onClick={() => setActiveFolderId(null)}
             >
-              <div className="nd">{p.date}</div>
-              <div className="nm">
-                <div className="nh">
-                  <h3>{p.title}</h3>
-                  <span className="ntag">{p.tag}</span>
-                </div>
-                <div className="nx">{p.excerpt}</div>
-              </div>
-              <div className="nr">{p.read}</div>
-              <div className="narr">→</div>
-            </a>
-          ))}
+              ← back
+            </button>
+          )}
+        </div>
+
+        <div
+          className="notes-stage"
+          key={activeFolder ? activeFolder.id : "__root"}
+        >
+          {!activeFolder && (
+            <div className="notes folders">
+              {FOLDERS.map((f) => (
+                <button
+                  className="folder-row"
+                  key={f.id}
+                  onClick={() => setActiveFolderId(f.id)}
+                >
+                  <div className="fi" aria-hidden>
+                    ▸
+                  </div>
+                  <div className="fm">
+                    <div className="fh">
+                      <h3>{f.name}/</h3>
+                      <span className="ftag">{f.title}</span>
+                    </div>
+                    <div className="fx">{f.description}</div>
+                  </div>
+                  <div className="fc">
+                    {f.posts.length} {f.posts.length === 1 ? "post" : "posts"}
+                  </div>
+                  <div className="farr">→</div>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {activeFolder && (
+            <div className="notes">
+              {activeFolder.posts.map((p, i) => (
+                <a
+                  className="note-row"
+                  key={p.id}
+                  href="#"
+                  style={{ animationDelay: `${i * 40}ms` }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpen(p);
+                  }}
+                >
+                  <div className="nd">{p.date}</div>
+                  <div className="nm">
+                    <div className="nh">
+                      <h3>{p.title}</h3>
+                      <span className="ntag">{p.tag}</span>
+                    </div>
+                    <div className="nx">{p.excerpt}</div>
+                  </div>
+                  <div className="nr">{p.read}</div>
+                  <div className="narr">→</div>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -435,6 +533,7 @@ export default function Home() {
   const [theme, setTheme] = useTheme();
   const [termOpen, setTermOpen] = useState(false);
   const [openPost, setOpenPost] = useState<Post | null>(null);
+  const [openProject, setOpenProject] = useState<Project | null>(null);
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -463,7 +562,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <ProjectsSection />
+        <ProjectsSection onOpen={setOpenProject} />
         <NotesSection onOpen={setOpenPost} />
         <Contact />
       </main>
@@ -484,6 +583,10 @@ export default function Home() {
         setTheme={setTheme}
       />
       <PostModal post={openPost} onClose={() => setOpenPost(null)} />
+      <ProjectModal
+        project={openProject}
+        onClose={() => setOpenProject(null)}
+      />
     </>
   );
 }
