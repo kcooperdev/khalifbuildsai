@@ -529,7 +529,6 @@ function SiteFooter() {
     <footer className="site-footer">
       <div className="shell frow">
         <div>© {new Date().getFullYear()} khalifbuildsai</div>
-        <div className="dim">no analytics · no cookies · no popups</div>
         <div>v1.0 · made by hand</div>
       </div>
     </footer>

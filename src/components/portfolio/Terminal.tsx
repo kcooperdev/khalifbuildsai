@@ -6,6 +6,7 @@ import {
   FOLDERS,
   type Project,
   type Post,
+  type Folder,
 } from "@/lib/portfolio-data";
 
 type Theme = "dark" | "light";
@@ -18,17 +19,24 @@ type Ctx = {
   openProject: (p: Project) => void;
   openPost: (p: Post) => void;
   openFolder: (folderId: string | null) => void;
+  cwd: string | null;
+  setCwd: (id: string | null) => void;
 };
 
-type HistoryEntry = { type: "in" | "out"; lines: string[] };
+type HistoryEntry =
+  | { type: "in"; lines: string[]; prompt: string }
+  | { type: "out"; lines: string[] };
 
 const HELP_LINES = [
   "available commands:",
   "  help              show this",
   "  about             who is khalif",
-  "  ls                list projects + note folders",
-  "  ls <folder>       list posts in a folder",
-  "  open <name>       open a project, folder, or post (fuzzy match)",
+  "  ls                list current dir (projects + folders at root)",
+  "  ls <folder>       peek into a folder without entering it",
+  "  cd <folder>       enter a folder",
+  "  cd ..             back to root",
+  "  pwd               print current path",
+  "  open <name>       open a project or post (fuzzy match)",
   "  projects          list projects",
   "  contact           how to reach me",
   "  theme <name>      dark | light",
@@ -52,15 +60,19 @@ function findProject(q: string): Project | undefined {
   return PROJECTS.find((p) => p.id === q || norm(p.title) === q);
 }
 
-function findFolder(q: string) {
+function findFolder(q: string): Folder | undefined {
   return FOLDERS.find(
     (f) => f.id === q || f.name === q || norm(f.title) === q,
   );
 }
 
-function findPost(q: string) {
+function findPostInFolder(folder: Folder, q: string): Post | undefined {
+  return folder.posts.find((p) => p.id === q || norm(p.title) === q);
+}
+
+function findPostAnywhere(q: string) {
   for (const f of FOLDERS) {
-    const post = f.posts.find((p) => p.id === q || norm(p.title) === q);
+    const post = findPostInFolder(f, q);
     if (post) return { folder: f, post };
   }
   return undefined;
@@ -68,6 +80,12 @@ function findPost(q: string) {
 
 function pad(s: string, n: number): string {
   return s.length >= n ? s : s + " ".repeat(n - s.length);
+}
+
+function pathFor(cwd: string | null): string {
+  if (!cwd) return "~";
+  const f = FOLDERS.find((x) => x.id === cwd);
+  return f ? `~/notes/${f.name}` : "~";
 }
 
 function lsRoot(): string[] {
@@ -91,14 +109,11 @@ function lsRoot(): string[] {
     });
   }
   lines.push("");
-  lines.push("use `open <name>` to jump in. `ls <folder>` lists posts.");
+  lines.push("`cd <folder>` to enter · `open <project>` to view.");
   return lines;
 }
 
-function lsFolder(arg: string): string[] {
-  const q = norm(arg);
-  const folder = findFolder(q);
-  if (!folder) return [`no folder: ${arg}. try \`ls\`.`];
+function lsFolderListing(folder: Folder): string[] {
   const lines: string[] = [`notes/${folder.name}/`];
   if (folder.posts.length === 0) {
     lines.push("  (empty)");
@@ -112,6 +127,13 @@ function lsFolder(arg: string): string[] {
     lines.push(`use \`open ${folder.posts[0].id}\` to read.`);
   }
   return lines;
+}
+
+function lsArg(arg: string): string[] {
+  const q = norm(arg);
+  const folder = findFolder(q);
+  if (!folder) return [`ls: no such folder: ${arg}`];
+  return lsFolderListing(folder);
 }
 
 function staticOutput(cmd: string): string[] | null {
@@ -173,12 +195,47 @@ function runCommand(raw: string, ctx: Ctx): string[] | null {
     ctx.setTheme(arg);
     return [`theme → ${arg}`];
   }
-  if (cmd === "ls") {
-    return arg ? lsFolder(arg) : lsRoot();
+  if (cmd === "pwd") return [pathFor(ctx.cwd)];
+
+  if (cmd === "cd") {
+    if (!arg || arg === ".." || arg === "~" || arg === "/") {
+      ctx.setCwd(null);
+      ctx.openFolder(null);
+      return [];
+    }
+    const q = norm(arg);
+    const folder = findFolder(q);
+    if (!folder) return [`cd: no such folder: ${arg}`];
+    ctx.setCwd(folder.id);
+    ctx.openFolder(folder.id);
+    ctx.scrollTo("notes");
+    return [];
   }
+
+  if (cmd === "ls") {
+    if (arg) return lsArg(arg);
+    if (ctx.cwd) {
+      const folder = FOLDERS.find((f) => f.id === ctx.cwd);
+      return folder ? lsFolderListing(folder) : lsRoot();
+    }
+    return lsRoot();
+  }
+
   if (cmd === "open") {
     if (!arg) return ["usage: open <name>. try `ls` to see what's open-able."];
     const q = norm(arg);
+
+    if (ctx.cwd) {
+      const folder = FOLDERS.find((f) => f.id === ctx.cwd);
+      if (folder) {
+        const post = findPostInFolder(folder, q);
+        if (post) {
+          ctx.openPost(post);
+          ctx.close();
+          return null;
+        }
+      }
+    }
 
     const proj = findProject(q);
     if (proj) {
@@ -188,21 +245,17 @@ function runCommand(raw: string, ctx: Ctx): string[] | null {
       return null;
     }
 
-    const folder = findFolder(q);
-    if (folder) {
-      ctx.openFolder(folder.id);
-      ctx.scrollTo("notes");
-      ctx.close();
-      return null;
-    }
-
-    const hit = findPost(q);
+    const hit = findPostAnywhere(q);
     if (hit) {
+      ctx.setCwd(hit.folder.id);
       ctx.openFolder(hit.folder.id);
       ctx.openPost(hit.post);
       ctx.close();
       return null;
     }
+
+    if (findFolder(q))
+      return [`open: \`${arg}\` is a folder. use \`cd ${arg}\` to enter it.`];
 
     return [`no match: ${arg}. try \`ls\`.`];
   }
@@ -242,6 +295,7 @@ export function Terminal({
   const [value, setValue] = useState("");
   const [recall, setRecall] = useState<string[]>([]);
   const [recallIdx, setRecallIdx] = useState(-1);
+  const [cwd, setCwd] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -259,7 +313,11 @@ export function Terminal({
 
   const submit = useCallback(() => {
     const raw = value;
-    const next: HistoryEntry[] = [...history, { type: "in", lines: [raw] }];
+    const promptAtEntry = pathFor(cwd);
+    const next: HistoryEntry[] = [
+      ...history,
+      { type: "in", lines: [raw], prompt: promptAtEntry },
+    ];
     const ctx: Ctx = {
       clear: () => setHistory([]),
       close: onClose,
@@ -271,6 +329,8 @@ export function Terminal({
       openProject: onOpenProject,
       openPost: onOpenPost,
       openFolder: onOpenFolder,
+      cwd,
+      setCwd,
     };
     const out = runCommand(raw, ctx);
     if (out === null) {
@@ -285,6 +345,7 @@ export function Terminal({
   }, [
     value,
     history,
+    cwd,
     onClose,
     setTheme,
     onOpenProject,
@@ -316,6 +377,8 @@ export function Terminal({
 
   if (!open) return null;
 
+  const livePrompt = pathFor(cwd);
+
   return (
     <div className="term-overlay" onClick={onClose}>
       <div
@@ -327,7 +390,7 @@ export function Terminal({
           <span className="term-dot" />
           <span className="term-dot" />
           <span className="term-dot" />
-          <span className="term-title">guest@khalifbuildsai — ~/site</span>
+          <span className="term-title">guest@khalifbuildsai — {livePrompt}</span>
           <button
             className="term-close"
             onClick={onClose}
@@ -342,13 +405,17 @@ export function Terminal({
           {history.map((h, i) => (
             <div key={i} className={`term-line ${h.type}`}>
               {h.type === "in" && (
-                <span className="term-prompt">guest@khalifbuildsai:~$ </span>
+                <span className="term-prompt">
+                  guest@khalifbuildsai:{h.prompt}$&nbsp;
+                </span>
               )}
               <span>{h.lines.join("\n")}</span>
             </div>
           ))}
           <div className="term-line in">
-            <span className="term-prompt">guest@khalifbuildsai:~$ </span>
+            <span className="term-prompt">
+              guest@khalifbuildsai:{livePrompt}$&nbsp;
+            </span>
             <input
               ref={inputRef}
               className="term-input"
