@@ -12,28 +12,6 @@ export type Project = {
   readme?: string;
 };
 
-export type PostBlock =
-  | { type: "p"; text: string }
-  | { type: "playground"; label?: string; code: string };
-
-export type Post = {
-  id: string;
-  date: string;
-  title: string;
-  read: string;
-  tag: string;
-  excerpt: string;
-  body: PostBlock[];
-};
-
-export type Folder = {
-  id: string;
-  name: string;
-  title: string;
-  description: string;
-  posts: Post[];
-};
-
 const WHATS_FOR_DINNER_README = `# What's for Dinner
 
 ### AI-powered fridge scanner. Snap a photo, get a recipe.
@@ -107,65 +85,5 @@ export const PROJECTS: Project[] = [
     year: "2026",
     repo: "https://github.com/khalifbuildsai/whats-for-dinner",
     readme: WHATS_FOR_DINNER_README,
-  },
-];
-
-export const FOLDERS: Folder[] = [
-  {
-    id: "data-structures",
-    name: "data-structures",
-    title: "Data Structures Refresher",
-    description: "Back to fundamentals — one structure at a time.",
-    posts: [
-      {
-        id: "arrays",
-        date: "2026.05.01",
-        title: "Arrays",
-        read: "5 min",
-        tag: "fundamentals",
-        excerpt:
-          "Contiguous memory, O(1) random access, and why almost every other structure secretly wants to be one.",
-        body: [
-          {
-            type: "p",
-            text: "An array is a contiguous block of memory holding elements of the same size. That's the whole pitch. Index i lives at base + i * size. The hardware loves this — caches eat sequential memory for breakfast.",
-          },
-          {
-            type: "p",
-            text: "Random access is O(1). Iteration is the fastest you can get on modern CPUs because of cache lines and prefetching. Inserting in the middle is O(n) because you have to slide elements over. Appending to a dynamic array is amortized O(1) because the underlying buffer doubles.",
-          },
-          {
-            type: "p",
-            text: 'Most languages\' "list" or "vector" type is a dynamic array, not a linked list. If you reach for a linked list reflexively, ask: do I actually need O(1) splice? Usually no.',
-          },
-          {
-            type: "playground",
-            label: "arrays.js",
-            code: `// edit and hit run (or ⌘/Ctrl + ↵)
-const arr = [1, 2, 3, 4, 5];
-
-// O(1) random access
-console.log("first:", arr[0]);
-console.log("length:", arr.length);
-
-// O(1) amortized — append
-arr.push(6);
-console.log("after push:", arr);
-
-// O(n) — middle insert shifts everything right
-arr.splice(2, 0, 99);
-console.log("after splice:", arr);
-
-// O(n) — search
-console.log("indexOf 99:", arr.indexOf(99));
-
-// try your own:
-// const squared = arr.map(n => n * n);
-// console.log(squared);
-`,
-          },
-        ],
-      },
-    ],
   },
 ];

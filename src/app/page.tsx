@@ -7,15 +7,8 @@ import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import {
-  PROJECTS,
-  FOLDERS,
-  type Post,
-  type Folder,
-  type Project,
-} from "@/lib/portfolio-data";
+import { PROJECTS, type Project } from "@/lib/portfolio-data";
 import { Terminal } from "@/components/portfolio/Terminal";
-import { CodePlayground } from "@/components/portfolio/CodePlayground";
 import { ProjectModal } from "@/components/portfolio/ProjectModal";
 
 type Theme = "dark" | "light";
@@ -72,7 +65,6 @@ function TopBar({
 
   const navLinks = [
     { href: "#projects", label: "projects" },
-    { href: "#notes", label: "notes" },
     { href: "#about", label: "about" },
     { href: "#contact", label: "contact" },
   ];
@@ -294,201 +286,6 @@ function ProjectsSection({
   );
 }
 
-function PostModal({
-  post,
-  onClose,
-}: {
-  post: Post | null;
-  onClose: () => void;
-}) {
-  useEffect(() => {
-    if (!post) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [post, onClose]);
-
-  if (!post) return null;
-
-  return (
-    <div className="post-overlay" onClick={onClose}>
-      <article
-        className="post-window"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="post-title"
-      >
-        <header className="post-bar">
-          <span className="post-bar-meta">
-            <span className="accent">{post.date}</span>
-            <span className="dim">
-              {" "}
-              · {post.tag} · {post.read}
-            </span>
-          </span>
-          <button
-            className="post-close"
-            onClick={onClose}
-            aria-label="close post"
-          >
-            ×
-          </button>
-        </header>
-        <div className="post-body">
-          <div className="post-eyebrow">{`// ${post.tag}`}</div>
-          <h1 id="post-title" className="post-title">
-            {post.title}
-          </h1>
-          <div className="post-excerpt">{post.excerpt}</div>
-          <div className="post-rule" />
-          <div className="post-prose">
-            {post.body.map((block, i) => {
-              if (block.type === "playground") {
-                return (
-                  <CodePlayground
-                    key={i}
-                    initialCode={block.code}
-                    label={block.label}
-                  />
-                );
-              }
-              return <p key={i}>{block.text}</p>;
-            })}
-          </div>
-          <div className="post-foot">
-            <span className="dim">— khalif</span>
-            <button className="post-close-btn" onClick={onClose}>
-              close ←
-            </button>
-          </div>
-        </div>
-      </article>
-    </div>
-  );
-}
-
-function NotesSection({
-  onOpen,
-  activeFolderId,
-  setActiveFolderId,
-}: {
-  onOpen: (post: Post) => void;
-  activeFolderId: string | null;
-  setActiveFolderId: (id: string | null) => void;
-}) {
-  const activeFolder: Folder | null =
-    FOLDERS.find((f) => f.id === activeFolderId) ?? null;
-
-  const totalPosts = useMemo(
-    () => FOLDERS.reduce((n, f) => n + f.posts.length, 0),
-    [],
-  );
-
-  const tag = activeFolder
-    ? `// ${activeFolder.posts.length} ${activeFolder.posts.length === 1 ? "post" : "posts"}`
-    : `// ${FOLDERS.length} folders · ${totalPosts} posts`;
-
-  return (
-    <section id="notes">
-      <div className="shell">
-        <SectionHead n="03" label="notes" tag={tag} />
-
-        <div className="notes-path">
-          <button
-            className="notes-crumb"
-            onClick={() => setActiveFolderId(null)}
-            aria-label="back to all folders"
-            disabled={!activeFolder}
-          >
-            ~/notes
-          </button>
-          {activeFolder && (
-            <>
-              <span className="notes-sep">/</span>
-              <span className="notes-crumb current">{activeFolder.name}</span>
-            </>
-          )}
-          {activeFolder && (
-            <button
-              className="notes-back"
-              onClick={() => setActiveFolderId(null)}
-            >
-              ← back
-            </button>
-          )}
-        </div>
-
-        <div
-          className="notes-stage"
-          key={activeFolder ? activeFolder.id : "__root"}
-        >
-          {!activeFolder && (
-            <div className="notes folders">
-              {FOLDERS.map((f) => (
-                <button
-                  className="folder-row"
-                  key={f.id}
-                  onClick={() => setActiveFolderId(f.id)}
-                >
-                  <div className="fi" aria-hidden>
-                    ▸
-                  </div>
-                  <div className="fm">
-                    <div className="fh">
-                      <h3>{f.name}/</h3>
-                      <span className="ftag">{f.title}</span>
-                    </div>
-                    <div className="fx">{f.description}</div>
-                  </div>
-                  <div className="fc">
-                    {f.posts.length} {f.posts.length === 1 ? "post" : "posts"}
-                  </div>
-                  <div className="farr">→</div>
-                </button>
-              ))}
-            </div>
-          )}
-
-          {activeFolder && (
-            <div className="notes">
-              {activeFolder.posts.map((p, i) => (
-                <a
-                  className="note-row"
-                  key={p.id}
-                  href="#"
-                  style={{ animationDelay: `${i * 40}ms` }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onOpen(p);
-                  }}
-                >
-                  <div className="nd">{p.date}</div>
-                  <div className="nm">
-                    <div className="nh">
-                      <h3>{p.title}</h3>
-                      <span className="ntag">{p.tag}</span>
-                    </div>
-                    <div className="nx">{p.excerpt}</div>
-                  </div>
-                  <div className="nr">{p.read}</div>
-                  <div className="narr">→</div>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
   const links = [
     {
@@ -538,9 +335,7 @@ function SiteFooter() {
 export default function Home() {
   const [theme, setTheme] = useTheme();
   const [termOpen, setTermOpen] = useState(false);
-  const [openPost, setOpenPost] = useState<Post | null>(null);
   const [openProject, setOpenProject] = useState<Project | null>(null);
-  const [notesFolderId, setNotesFolderId] = useState<string | null>(null);
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -570,11 +365,6 @@ export default function Home() {
         <Hero />
         <About />
         <ProjectsSection onOpen={setOpenProject} />
-        <NotesSection
-          onOpen={setOpenPost}
-          activeFolderId={notesFolderId}
-          setActiveFolderId={setNotesFolderId}
-        />
         <Contact />
       </main>
       <SiteFooter />
@@ -593,10 +383,7 @@ export default function Home() {
         onClose={() => setTermOpen(false)}
         setTheme={setTheme}
         onOpenProject={setOpenProject}
-        onOpenPost={setOpenPost}
-        onOpenFolder={setNotesFolderId}
       />
-      <PostModal post={openPost} onClose={() => setOpenPost(null)} />
       <ProjectModal
         project={openProject}
         onClose={() => setOpenProject(null)}
