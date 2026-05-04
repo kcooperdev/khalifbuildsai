@@ -374,8 +374,15 @@ function PostModal({
   );
 }
 
-function NotesSection({ onOpen }: { onOpen: (post: Post) => void }) {
-  const [activeFolderId, setActiveFolderId] = useState<string | null>(null);
+function NotesSection({
+  onOpen,
+  activeFolderId,
+  setActiveFolderId,
+}: {
+  onOpen: (post: Post) => void;
+  activeFolderId: string | null;
+  setActiveFolderId: (id: string | null) => void;
+}) {
   const activeFolder: Folder | null =
     FOLDERS.find((f) => f.id === activeFolderId) ?? null;
 
@@ -534,6 +541,7 @@ export default function Home() {
   const [termOpen, setTermOpen] = useState(false);
   const [openPost, setOpenPost] = useState<Post | null>(null);
   const [openProject, setOpenProject] = useState<Project | null>(null);
+  const [notesFolderId, setNotesFolderId] = useState<string | null>(null);
 
   const toggleTheme = useCallback(() => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -563,7 +571,11 @@ export default function Home() {
         <Hero />
         <About />
         <ProjectsSection onOpen={setOpenProject} />
-        <NotesSection onOpen={setOpenPost} />
+        <NotesSection
+          onOpen={setOpenPost}
+          activeFolderId={notesFolderId}
+          setActiveFolderId={setNotesFolderId}
+        />
         <Contact />
       </main>
       <SiteFooter />
@@ -581,6 +593,9 @@ export default function Home() {
         open={termOpen}
         onClose={() => setTermOpen(false)}
         setTheme={setTheme}
+        onOpenProject={setOpenProject}
+        onOpenPost={setOpenPost}
+        onOpenFolder={setNotesFolderId}
       />
       <PostModal post={openPost} onClose={() => setOpenPost(null)} />
       <ProjectModal

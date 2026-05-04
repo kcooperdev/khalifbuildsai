@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, KeyboardEvent } from "react";
-import { PROJECTS } from "@/lib/portfolio-data";
+import {
+  PROJECTS,
+  FOLDERS,
+  type Project,
+  type Post,
+} from "@/lib/portfolio-data";
 
 type Theme = "dark" | "light";
 
@@ -10,6 +15,9 @@ type Ctx = {
   close: () => void;
   setTheme: (t: Theme) => void;
   scrollTo: (id: string) => void;
+  openProject: (p: Project) => void;
+  openPost: (p: Post) => void;
+  openFolder: (folderId: string | null) => void;
 };
 
 type HistoryEntry = { type: "in" | "out"; lines: string[] };
@@ -18,8 +26,10 @@ const HELP_LINES = [
   "available commands:",
   "  help              show this",
   "  about             who is khalif",
+  "  ls                list projects + note folders",
+  "  ls <folder>       list posts in a folder",
+  "  open <name>       open a project, folder, or post (fuzzy match)",
   "  projects          list projects",
-  "  open <id>         scroll to a project (e.g. open community-01)",
   "  contact           how to reach me",
   "  theme <name>      dark | light",
   "  whoami            you, presumably",
@@ -29,6 +39,80 @@ const HELP_LINES = [
   "  clear             wipe the buffer",
   "  exit              close this thing (or hit esc)",
 ];
+
+function norm(s: string): string {
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+function findProject(q: string): Project | undefined {
+  return PROJECTS.find((p) => p.id === q || norm(p.title) === q);
+}
+
+function findFolder(q: string) {
+  return FOLDERS.find(
+    (f) => f.id === q || f.name === q || norm(f.title) === q,
+  );
+}
+
+function findPost(q: string) {
+  for (const f of FOLDERS) {
+    const post = f.posts.find((p) => p.id === q || norm(p.title) === q);
+    if (post) return { folder: f, post };
+  }
+  return undefined;
+}
+
+function pad(s: string, n: number): string {
+  return s.length >= n ? s : s + " ".repeat(n - s.length);
+}
+
+function lsRoot(): string[] {
+  const lines: string[] = [];
+  lines.push("projects/");
+  if (PROJECTS.length === 0) {
+    lines.push("  (empty)");
+  } else {
+    PROJECTS.forEach((p) => {
+      lines.push(`  ${pad(p.id, 22)} ${pad(p.status, 8)} ${p.title}`);
+    });
+  }
+  lines.push("");
+  lines.push("notes/");
+  if (FOLDERS.length === 0) {
+    lines.push("  (empty)");
+  } else {
+    FOLDERS.forEach((f) => {
+      const count = `${f.posts.length} ${f.posts.length === 1 ? "post" : "posts"}`;
+      lines.push(`  ${pad(f.name + "/", 22)} ${pad(count, 10)} ${f.title}`);
+    });
+  }
+  lines.push("");
+  lines.push("use `open <name>` to jump in. `ls <folder>` lists posts.");
+  return lines;
+}
+
+function lsFolder(arg: string): string[] {
+  const q = norm(arg);
+  const folder = findFolder(q);
+  if (!folder) return [`no folder: ${arg}. try \`ls\`.`];
+  const lines: string[] = [`notes/${folder.name}/`];
+  if (folder.posts.length === 0) {
+    lines.push("  (empty)");
+  } else {
+    folder.posts.forEach((p) => {
+      lines.push(`  ${pad(p.id, 20)} ${pad(p.date, 12)} ${p.title}`);
+    });
+  }
+  if (folder.posts[0]) {
+    lines.push("");
+    lines.push(`use \`open ${folder.posts[0].id}\` to read.`);
+  }
+  return lines;
+}
 
 function staticOutput(cmd: string): string[] | null {
   switch (cmd) {
@@ -45,10 +129,10 @@ function staticOutput(cmd: string): string[] | null {
         "id              status     title",
         "──              ──────     ─────",
         ...PROJECTS.map(
-          (p) => `${p.id.padEnd(15)} ${p.status.padEnd(10)} ${p.title}`,
+          (p) => `${pad(p.id, 22)} ${pad(p.status, 8)} ${p.title}`,
         ),
         "",
-        "use `open <id>` to jump to a card.",
+        "use `open <name>` to view (id or title works).",
       ];
     case "contact":
       return [
@@ -89,12 +173,38 @@ function runCommand(raw: string, ctx: Ctx): string[] | null {
     ctx.setTheme(arg);
     return [`theme → ${arg}`];
   }
+  if (cmd === "ls") {
+    return arg ? lsFolder(arg) : lsRoot();
+  }
   if (cmd === "open") {
-    const p = PROJECTS.find((x) => x.id === arg);
-    if (!p) return [`no project: ${arg}. try \`projects\``];
-    ctx.scrollTo(`project-${p.id}`);
-    ctx.close();
-    return null;
+    if (!arg) return ["usage: open <name>. try `ls` to see what's open-able."];
+    const q = norm(arg);
+
+    const proj = findProject(q);
+    if (proj) {
+      ctx.openProject(proj);
+      ctx.scrollTo(`project-${proj.id}`);
+      ctx.close();
+      return null;
+    }
+
+    const folder = findFolder(q);
+    if (folder) {
+      ctx.openFolder(folder.id);
+      ctx.scrollTo("notes");
+      ctx.close();
+      return null;
+    }
+
+    const hit = findPost(q);
+    if (hit) {
+      ctx.openFolder(hit.folder.id);
+      ctx.openPost(hit.post);
+      ctx.close();
+      return null;
+    }
+
+    return [`no match: ${arg}. try \`ls\`.`];
   }
 
   const out = staticOutput(cmd);
@@ -106,9 +216,19 @@ type TerminalProps = {
   open: boolean;
   onClose: () => void;
   setTheme: (t: Theme) => void;
+  onOpenProject: (p: Project) => void;
+  onOpenPost: (p: Post) => void;
+  onOpenFolder: (folderId: string | null) => void;
 };
 
-export function Terminal({ open, onClose, setTheme }: TerminalProps) {
+export function Terminal({
+  open,
+  onClose,
+  setTheme,
+  onOpenProject,
+  onOpenPost,
+  onOpenFolder,
+}: TerminalProps) {
   const [history, setHistory] = useState<HistoryEntry[]>([
     {
       type: "out",
@@ -148,6 +268,9 @@ export function Terminal({ open, onClose, setTheme }: TerminalProps) {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       },
+      openProject: onOpenProject,
+      openPost: onOpenPost,
+      openFolder: onOpenFolder,
     };
     const out = runCommand(raw, ctx);
     if (out === null) {
@@ -159,7 +282,15 @@ export function Terminal({ open, onClose, setTheme }: TerminalProps) {
     setRecall((r) => (raw.trim() ? [raw, ...r].slice(0, 30) : r));
     setRecallIdx(-1);
     setValue("");
-  }, [value, history, onClose, setTheme]);
+  }, [
+    value,
+    history,
+    onClose,
+    setTheme,
+    onOpenProject,
+    onOpenPost,
+    onOpenFolder,
+  ]);
 
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
