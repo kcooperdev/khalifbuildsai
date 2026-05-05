@@ -7,7 +7,7 @@ import {
   useCallback,
   useSyncExternalStore,
 } from "react";
-import { PROJECTS, type Project } from "@/lib/portfolio-data";
+import { CATEGORIES, PROJECTS, type Project } from "@/lib/portfolio-data";
 import { Terminal } from "@/components/portfolio/Terminal";
 import { ProjectModal } from "@/components/portfolio/ProjectModal";
 
@@ -184,10 +184,7 @@ function ProjectsSection({
   onOpen: (project: Project) => void;
 }) {
   const allItems = PROJECTS;
-  const tags = useMemo(() => {
-    const set = new Set(allItems.map((p) => p.tag));
-    return ["all", ...Array.from(set)];
-  }, [allItems]);
+  const tags = useMemo(() => ["all", ...CATEGORIES], []);
   const [filter, setFilterState] = useState("all");
   const [pageState, setPage] = useState(0);
 

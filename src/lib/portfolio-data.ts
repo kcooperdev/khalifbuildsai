@@ -1,5 +1,17 @@
 export type ProjectStatus = "shipped" | "wip" | "concept" | "beta";
 
+export const CATEGORIES = [
+  "food",
+  "lifestyle",
+  "health",
+  "utility",
+  "events",
+  "travel",
+  "money",
+  "social",
+  "data",
+] as const;
+
 export type Project = {
   id: string;
   title: string;
@@ -76,7 +88,7 @@ export const PROJECTS: Project[] = [
   {
     id: "whats-for-dinner",
     title: "What's for Dinner",
-    tag: "day 01",
+    tag: "food",
     blurb:
       "Scans leftover items in your fridge and generates recipes from what's actually there.",
     status: "shipped",
