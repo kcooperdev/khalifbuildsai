@@ -12,18 +12,16 @@ export type Project = {
   readme?: string;
 };
 
-const WHATS_FOR_DINNER_README = `# What's for Dinner
-
-### AI-powered fridge scanner. Snap a photo, get a recipe.
-
-![Stack](https://img.shields.io/badge/STACK-Next.js_%7C_Tailwind_%7C_Gemini-ffffff?style=for-the-badge&labelColor=000000)
-![Status](https://img.shields.io/badge/STATUS-WIP-f59e0b?style=for-the-badge&labelColor=000000)
+const WHATS_FOR_DINNER_README = `![Stack](https://img.shields.io/badge/STACK-Next.js_%7C_Tailwind_%7C_Gemini-ffffff?style=for-the-badge&labelColor=000000)
+![Status](https://img.shields.io/badge/STATUS-SHIPPED-10b981?style=for-the-badge&labelColor=000000)
 
 ---
 
-## Demo
+## How it looks
 
-![Demo](https://placehold.co/1200x675/0a0a0a/10b981/png?text=DEMO+GIF+HERE&font=roboto)
+| 01 · snap | 02 · cook | 03 · eat |
+| :---: | :---: | :---: |
+| ![01 snap your fridge](/whats-for-dinner/01-snap.png) | ![02 cooking up your recipe](/whats-for-dinner/02-loading.png) | ![03 recipe](/whats-for-dinner/03-recipe.png) |
 
 ---
 
@@ -80,8 +78,8 @@ export const PROJECTS: Project[] = [
     title: "What's for Dinner",
     tag: "day 01",
     blurb:
-      "AI-powered fridge scanner. Snap a photo, get a recipe in under ten seconds.",
-    status: "wip",
+      "Scans leftover items in your fridge and generates recipes from what's actually there.",
+    status: "shipped",
     year: "2026",
     repo: "https://github.com/khalifbuildsai/whats-for-dinner",
     readme: WHATS_FOR_DINNER_README,
