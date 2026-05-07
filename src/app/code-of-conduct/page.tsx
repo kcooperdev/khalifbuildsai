@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { BackHome } from "@/components/BackHome";
 
 export const metadata: Metadata = {
-  title: "Code of Conduct | khalifbuildsai",
+  title: "Code of Conduct | kcooperdev",
   description:
-    "Our community guidelines and code of conduct for all khalifbuildsai spaces, events, and programs.",
+    "Our community guidelines and code of conduct for all kcooperdev spaces, events, and programs.",
 };
 
 const principles = [
@@ -53,6 +54,7 @@ const unacceptable = [
 export default function CodeOfConductPage() {
   return (
     <main>
+        <BackHome />
         {/* Hero */}
         <section className="relative overflow-hidden px-5 pb-16 pt-20 sm:px-8 md:pb-24 md:pt-28">
           <div className="dot-grid absolute inset-0 opacity-30" aria-hidden />

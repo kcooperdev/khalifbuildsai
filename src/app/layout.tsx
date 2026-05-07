@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "khalifbuildsai · ai tools, automations, and other cool things",
+  title: "kcooperdev · ai tools, automations, and other cool things",
   description:
     "Khalif — software engineer building AI tools, automations, and a 1,100+ member tech community.",
 };

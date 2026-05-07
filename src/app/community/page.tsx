@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { BackHome } from "@/components/BackHome";
 
 export const metadata: Metadata = {
-  title: "Community | khalifbuildsai",
+  title: "Community | kcooperdev",
   description:
     "Join a growing community of AI builders learning, networking, and growing together. Free to join.",
 };
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function CommunityPage() {
   return (
     <main>
+      <BackHome />
       <section className="relative overflow-hidden px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24 md:pb-24 md:pt-32">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
         <div className="hero-glow" aria-hidden />

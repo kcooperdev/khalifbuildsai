@@ -88,11 +88,11 @@ function staticOutput(cmd: string): string[] | null {
       ];
     case "contact":
       return [
-        "github     github.com/khalifbuildsai",
-        "linkedin   linkedin.com/in/khalifbuildsai",
+        "github     github.com/kcooperdev",
+        "linkedin   linkedin.com/in/kcooperdev",
       ];
     case "whoami":
-      return ["guest@khalifbuildsai"];
+      return ["guest@kcooperdev"];
     case "date":
       return [new Date().toString()];
     case "pwd":
@@ -165,7 +165,7 @@ export function Terminal({
     {
       type: "out",
       lines: [
-        "khalifbuildsai terminal · v1.0 · " + new Date().getFullYear(),
+        "kcooperdev terminal · v1.0 · " + new Date().getFullYear(),
         "type `help` for a list of commands.",
         "",
       ],
@@ -252,7 +252,7 @@ export function Terminal({
           <span className="term-dot" />
           <span className="term-dot" />
           <span className="term-dot" />
-          <span className="term-title">guest@khalifbuildsai — ~</span>
+          <span className="term-title">guest@kcooperdev — ~</span>
           <button
             className="term-close"
             onClick={onClose}
@@ -268,7 +268,7 @@ export function Terminal({
             <div key={i} className={`term-line ${h.type}`}>
               {h.type === "in" && (
                 <span className="term-prompt">
-                  guest@khalifbuildsai:{h.prompt}$&nbsp;
+                  guest@kcooperdev:{h.prompt}$&nbsp;
                 </span>
               )}
               <span>{h.lines.join("\n")}</span>
@@ -276,7 +276,7 @@ export function Terminal({
           ))}
           <div className="term-line in">
             <span className="term-prompt">
-              guest@khalifbuildsai:~$&nbsp;
+              guest@kcooperdev:~$&nbsp;
             </span>
             <input
               ref={inputRef}

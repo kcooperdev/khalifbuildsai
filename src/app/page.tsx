@@ -66,6 +66,7 @@ function TopBar({
   const navLinks = [
     { href: "#projects", label: "projects" },
     { href: "#about", label: "about" },
+    { href: "/events", label: "events" },
     { href: "#contact", label: "contact" },
   ];
 
@@ -86,7 +87,14 @@ function TopBar({
 
         <nav id="topbar-nav" className="topbar-nav">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              {...(l.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
               {l.label}
             </a>
           ))}
@@ -287,13 +295,23 @@ function Contact() {
   const links = [
     {
       k: "github",
-      v: "github.com/khalifbuildsai",
-      href: "https://github.com/khalifbuildsai",
+      v: "github.com/kcooperdev",
+      href: "https://github.com/kcooperdev",
     },
     {
       k: "linkedin",
-      v: "linkedin.com/in/khalifbuildsai",
-      href: "https://www.linkedin.com/in/khalifbuildsai",
+      v: "linkedin.com/in/kcooperdev",
+      href: "https://www.linkedin.com/in/kcooperdev",
+    },
+    {
+      k: "bluesky",
+      v: "@kcooperdev.bsky.social",
+      href: "https://bsky.app/profile/kcooperdev.bsky.social",
+    },
+    {
+      k: "x",
+      v: "x.com/kcooperdev",
+      href: "https://x.com/kcooperdev",
     },
   ];
   return (
@@ -302,7 +320,7 @@ function Contact() {
         <SectionHead n="04" label="contact" tag="// say hi" />
         <h3>
           Say hi — I&apos;m{" "}
-          <span className="accent">@khalifbuildsai</span> almost everywhere.
+          <span className="accent">@kcooperdev</span> almost everywhere.
         </h3>
         <div className="links">
           {links.map((l) => (
@@ -322,7 +340,7 @@ function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="shell frow">
-        <div>© {new Date().getFullYear()} khalifbuildsai</div>
+        <div>© {new Date().getFullYear()} kcooperdev</div>
         <div>v1.0 · made by hand</div>
       </div>
     </footer>

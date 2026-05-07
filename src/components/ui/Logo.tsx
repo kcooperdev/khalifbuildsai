@@ -16,12 +16,12 @@ export function Logo({ className = "", variant = "full" }: LogoProps) {
     <Link
       href="/"
       className={`flex items-center ${className}`}
-      aria-label="khalifbuildsai homepage"
+      aria-label="kcooperdev homepage"
     >
       <span className={`font-bold tracking-tight ${sizes[variant]}`}>
-        <span className="text-white">khalif</span>
-        <span className="text-gradient-warm">builds</span>
-        <span className="text-white/60">ai</span>
+        <span className="text-white">k</span>
+        <span className="text-gradient-warm">cooper</span>
+        <span className="text-white/60">dev</span>
       </span>
     </Link>
   );

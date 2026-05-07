@@ -45,7 +45,7 @@ export function CommunitySection() {
           <Button
             variant="secondary"
             as="a"
-            href="https://www.instagram.com/khalifbuildsai/"
+            href="https://www.instagram.com/kcooperdev/"
             className="px-8 py-3.5 text-base"
           >
             Follow on Instagram

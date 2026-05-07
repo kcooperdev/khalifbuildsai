@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { BackHome } from "@/components/BackHome";
 
 export const metadata: Metadata = {
-  title: "Privacy | khalifbuildsai",
-  description: "Privacy Policy for khalifbuildsai.",
+  title: "Privacy | kcooperdev",
+  description: "Privacy Policy for kcooperdev.",
 };
 
 export default function PrivacyPage() {
   return (
     <main>
+        <BackHome />
         {/* Hero */}
         <section className="relative overflow-hidden px-5 pb-8 pt-20 sm:px-8 md:pb-12 md:pt-28">
           <div className="hero-glow" aria-hidden />

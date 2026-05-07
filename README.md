@@ -36,9 +36,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # updated-blk-tech-connect
 # blk-tech-connect
-# khalifbuildsai
-# khalifbuildsai
-# khalifbuildsai
-# khalifbuildsai
-# khalifbuildsai
-# khalifbuildsai
+# kcooperdev
+# kcooperdev
+# kcooperdev
+# kcooperdev
+# kcooperdev
+# kcooperdev

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BackHome } from "@/components/BackHome";
 
 export const metadata: Metadata = {
-  title: "About | khalifbuildsai",
+  title: "About | kcooperdev",
   description:
-    "The story behind khalifbuildsai — why I built this and what drives me.",
+    "The story behind kcooperdev — why I built this and what drives me.",
 };
 
 export default function AboutPage() {
   return (
     <main>
+      <BackHome />
       {/* Hero */}
       <section className="relative overflow-hidden px-5 pb-12 pt-16 sm:px-8 sm:pb-16 sm:pt-24 md:pb-24 md:pt-32">
         <div className="dot-grid absolute inset-0 opacity-20" aria-hidden />
@@ -41,7 +43,7 @@ export default function AboutPage() {
               things smarter, and actually make the world better?</em>
             </p>
             <p>
-              That question is why khalifbuildsai exists.
+              That question is why kcooperdev exists.
             </p>
           </div>
         </div>
@@ -73,7 +75,7 @@ export default function AboutPage() {
               apply it to real life.
             </p>
             <p>
-              That&apos;s khalifbuildsai — courses, community, and content all
+              That&apos;s kcooperdev — courses, community, and content all
               designed to help regular people learn AI and do something with it.
             </p>
           </div>

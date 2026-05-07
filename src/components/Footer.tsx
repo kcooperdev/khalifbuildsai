@@ -5,11 +5,14 @@ import { Logo } from "./ui/Logo";
 
 const navLinks = [
   { href: "/community", label: "Community" },
+  { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];
 
 const socialLinks = [
-  { href: "https://www.instagram.com/khalifbuildsai/", label: "Instagram", external: true },
+  { href: "https://www.instagram.com/kcooperdev/", label: "Instagram", external: true },
+  { href: "https://bsky.app/profile/kcooperdev.bsky.social", label: "Bluesky", external: true },
+  { href: "https://x.com/kcooperdev", label: "X", external: true },
   { href: "https://discord.gg/ecQDYq8Apv", label: "Discord", external: true },
 ];
 
@@ -67,10 +70,10 @@ export function Footer() {
               </p>
               <div className="mt-6">
                 <a
-                  href="mailto:hello@khalifbuildsai.com"
+                  href="mailto:hello@kcooperdev.com"
                   className="text-[14px] text-white/30 transition-colors hover:text-amber-400/80"
                 >
-                  hello@khalifbuildsai.com
+                  hello@kcooperdev.com
                 </a>
               </div>
             </div>
@@ -88,7 +91,7 @@ export function Footer() {
       <div className="border-t border-white/[0.03] px-5 py-6 sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
           <span className="text-[13px] text-white/15">
-            © 2026 khalifbuildsai. All rights reserved.
+            © 2026 kcooperdev. All rights reserved.
           </span>
           <div className="flex gap-6">
             <Link

@@ -1,16 +1,6 @@
 export type ProjectStatus = "shipped" | "wip" | "concept" | "beta";
 
-export const CATEGORIES = [
-  "food",
-  "lifestyle",
-  "health",
-  "utility",
-  "events",
-  "travel",
-  "money",
-  "social",
-  "data",
-] as const;
+export const CATEGORIES = ["food"] as const;
 
 export type Project = {
   id: string;
@@ -76,7 +66,7 @@ What's for Dinner kills decision fatigue at the worst time of day. Snap a photo 
 ## Run Locally
 
 \`\`\`bash
-git clone https://github.com/khalifbuildsai/whats-for-dinner
+git clone https://github.com/kcooperdev/whats-for-dinner
 cd whats-for-dinner
 npm install
 echo "GEMINI_API_KEY=your_key_here" > .env.local
@@ -93,7 +83,7 @@ export const PROJECTS: Project[] = [
       "Scans leftover items in your fridge and generates recipes from what's actually there.",
     status: "shipped",
     year: "2026",
-    repo: "https://github.com/khalifbuildsai/whats-for-dinner",
+    repo: "https://github.com/kcooperdev/whats-for-dinner",
     readme: WHATS_FOR_DINNER_README,
   },
 ];

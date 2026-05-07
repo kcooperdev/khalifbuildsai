@@ -6,7 +6,7 @@ import confetti from "canvas-confetti";
 export function EasterEggs() {
   useEffect(() => {
     // Small confetti burst when clicking the logo
-    const logo = document.querySelector("[aria-label='khalifbuildsai homepage']");
+    const logo = document.querySelector("[aria-label='kcooperdev homepage']");
     if (!logo) return;
 
     const handleClick = () => {
