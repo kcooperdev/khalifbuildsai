@@ -63,7 +63,7 @@ function TopBar({
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  const navLinks = [
+  const navLinks: { href: string; label: string; external?: boolean }[] = [
     { href: "#projects", label: "projects" },
     { href: "#about", label: "about" },
     { href: "/events", label: "events" },
