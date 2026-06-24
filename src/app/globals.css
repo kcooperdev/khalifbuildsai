@@ -1238,3 +1238,24 @@ section + section { border-top: 1px solid var(--rule); }
 .dim { color: var(--ink-dim); }
 .faint { color: var(--ink-faint); }
 .accent { color: var(--accent); }
+
+/* ── thoughts ───────────────────────────────────────────────────────── */
+.page-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+  margin-bottom: 28px;
+  transition: color .15s ease;
+}
+.page-back:hover, .page-back:focus-visible { color: var(--accent); }
+
+.thought-empty {
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  max-width: 48ch;
+  padding: 24px 0 8px;
+  border-top: 1px dashed var(--rule);
+}

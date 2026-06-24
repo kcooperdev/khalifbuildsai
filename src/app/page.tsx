@@ -1,136 +1,16 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useSyncExternalStore,
-} from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { CATEGORIES, PROJECTS, type Project } from "@/lib/portfolio-data";
+import { SectionHead } from "@/components/portfolio/SectionHead";
+import { SiteFooter } from "@/components/portfolio/SiteFooter";
 import { Terminal } from "@/components/portfolio/Terminal";
+import { TopBar } from "@/components/portfolio/TopBar";
 import { ProjectModal } from "@/components/portfolio/ProjectModal";
-
-type Theme = "dark" | "light";
-
-const THEME_EVENT = "kbai-theme-change";
-
-function subscribeTheme(cb: () => void): () => void {
-  window.addEventListener(THEME_EVENT, cb);
-  return () => window.removeEventListener(THEME_EVENT, cb);
-}
-function getThemeSnapshot(): Theme {
-  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
-}
-function getServerThemeSnapshot(): Theme {
-  return "dark";
-}
-
-function useTheme(): [Theme, (t: Theme) => void] {
-  const theme = useSyncExternalStore(
-    subscribeTheme,
-    getThemeSnapshot,
-    getServerThemeSnapshot,
-  );
-  const setTheme = useCallback((t: Theme) => {
-    document.documentElement.dataset.theme = t;
-    try {
-      window.localStorage.setItem("kbai-theme", t);
-    } catch {}
-    window.dispatchEvent(new Event(THEME_EVENT));
-  }, []);
-  return [theme, setTheme];
-}
+import { useTheme } from "@/components/portfolio/useTheme";
 
 const HEADLINE = "Building AI tools, automations, and other cool things.";
 const PER_PAGE = 5;
-
-function TopBar({
-  theme,
-  toggleTheme,
-}: {
-  theme: Theme;
-  toggleTheme: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  const navLinks: { href: string; label: string; external?: boolean }[] = [
-    { href: "#projects", label: "projects" },
-    { href: "#about", label: "about" },
-    { href: "/thoughts", label: "thoughts" },
-    { href: "#contact", label: "contact" },
-  ];
-
-  return (
-    <header className="topbar" data-open={open ? "true" : "false"}>
-      <div className="shell topbar-inner">
-        <button
-          className="topbar-burger"
-          onClick={() => setOpen((o) => !o)}
-          aria-label={open ? "close menu" : "open menu"}
-          aria-expanded={open}
-          aria-controls="topbar-nav"
-        >
-          <span className="burger-bars" aria-hidden>
-            <span /><span /><span />
-          </span>
-        </button>
-
-        <nav id="topbar-nav" className="topbar-nav">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              {...(l.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="toggle theme"
-        >
-          <span className="dot" />
-          <span className="theme-toggle-label">{theme}</span>
-        </button>
-      </div>
-    </header>
-  );
-}
-
-function SectionHead({
-  n,
-  label,
-  tag,
-}: {
-  n: string;
-  label: string;
-  tag?: string;
-}) {
-  return (
-    <div className="sec-head">
-      <span className="num">{n}</span>
-      <span className="ttl">{label}</span>
-      <span className="ln" />
-      {tag && <span>{tag}</span>}
-    </div>
-  );
-}
 
 function Hero() {
   const words = HEADLINE.trim().split(/\s+/);
@@ -333,17 +213,6 @@ function Contact() {
         </div>
       </div>
     </section>
-  );
-}
-
-function SiteFooter() {
-  return (
-    <footer className="site-footer">
-      <div className="shell frow">
-        <div>© {new Date().getFullYear()} kcooperdev</div>
-        <div>v1.0 · made by hand</div>
-      </div>
-    </footer>
   );
 }
 
