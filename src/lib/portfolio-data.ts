@@ -1,6 +1,6 @@
 export type ProjectStatus = "shipped" | "wip" | "concept" | "beta";
 
-export const CATEGORIES = ["food"] as const;
+export const CATEGORIES = ["food", "devtools"] as const;
 
 export type Project = {
   id: string;
@@ -74,7 +74,42 @@ npm run dev
 \`\`\`
 `;
 
+const TOKLENS_README = `![Stack](https://img.shields.io/badge/STACK-CLI_%7C_TypeScript-ffffff?style=for-the-badge&labelColor=000000)
+![Status](https://img.shields.io/badge/STATUS-WIP-f59e0b?style=for-the-badge&labelColor=000000)
+
+---
+
+## The Idea
+
+Toklens is a command-line tool that scans your prompts, files, and codebase to reveal hidden token usage and show where you're overspending. It gives you clear insights, cost estimates, and optimization opportunities so you can build smarter and stay within budget.
+
+---
+
+## What It Does
+
+1. **Scan** — prompts, files, and your codebase for token-heavy patterns.
+2. **Surface** — hidden usage you wouldn't catch by eyeballing context windows.
+3. **Estimate** — costs and flag where you're overspending.
+4. **Optimize** — spot concrete places to trim without guessing.
+
+---
+
+## Status
+
+Currently in active development.
+`;
+
 export const PROJECTS: Project[] = [
+  {
+    id: "toklens",
+    title: "Toklens",
+    tag: "devtools",
+    blurb:
+      "CLI that scans prompts, files, and your codebase for hidden token usage and cost overspend.",
+    status: "wip",
+    year: "2026",
+    readme: TOKLENS_README,
+  },
   {
     id: "whats-for-dinner",
     title: "What's for Dinner",
