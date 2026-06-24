@@ -5,7 +5,6 @@ import { Logo } from "./ui/Logo";
 
 const navLinks = [
   { href: "/community", label: "Community" },
-  { href: "/events", label: "Events" },
   { href: "/about", label: "About" },
 ];
 
