@@ -74,23 +74,23 @@ npm run dev
 \`\`\`
 `;
 
-const TOKLENS_README = `![Stack](https://img.shields.io/badge/STACK-CLI_%7C_TypeScript-ffffff?style=for-the-badge&labelColor=000000)
+const TOKENLENS_README = `![Stack](https://img.shields.io/badge/STACK-CLI_%7C_TypeScript-ffffff?style=for-the-badge&labelColor=000000)
 ![Status](https://img.shields.io/badge/STATUS-WIP-f59e0b?style=for-the-badge&labelColor=000000)
 
 ---
 
 ## The Idea
 
-Toklens is a command-line tool that scans your prompts, files, and codebase to reveal hidden token usage and show where you're overspending. It gives you clear insights, cost estimates, and optimization opportunities so you can build smarter and stay within budget.
+CLI tool that shows you exactly where your tokens go so you can cut waste and lower AI costs.
 
 ---
 
-## What It Does
+## Run Locally
 
-1. **Scan** — prompts, files, and your codebase for token-heavy patterns.
-2. **Surface** — hidden usage you wouldn't catch by eyeballing context windows.
-3. **Estimate** — costs and flag where you're overspending.
-4. **Optimize** — spot concrete places to trim without guessing.
+\`\`\`bash
+git clone https://github.com/kcooperdev/tokenlens
+cd tokenlens
+\`\`\`
 
 ---
 
@@ -101,14 +101,15 @@ Currently in active development.
 
 export const PROJECTS: Project[] = [
   {
-    id: "toklens",
-    title: "Toklens",
+    id: "Tokenlens",
+    title: "Tokenlens",
     tag: "devtools",
     blurb:
-      "CLI that scans prompts, files, and your codebase for hidden token usage and cost overspend.",
+      "CLI tool that shows you exactly where your tokens go so you can cut waste and lower AI costs.",
     status: "wip",
     year: "2026",
-    readme: TOKLENS_README,
+    repo: "https://github.com/kcooperdev/tokenlens",
+    readme: TOKENLENS_README,
   },
   {
     id: "whats-for-dinner",
