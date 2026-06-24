@@ -59,7 +59,7 @@ function About() {
           communities while hosting tech events and workshops that bring people
           together. I also built a{" "}
           <a
-            href="https://techafterdark.live"
+            href="https://luma.com/soulhause"
             target="_blank"
             rel="noopener noreferrer"
             className="accent-link"
