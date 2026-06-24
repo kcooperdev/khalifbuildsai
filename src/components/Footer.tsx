@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Logo } from "./ui/Logo";
 
 const navLinks = [
+  { href: "/thoughts", label: "Thoughts" },
   { href: "/community", label: "Community" },
   { href: "/about", label: "About" },
 ];
