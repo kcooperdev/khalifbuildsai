@@ -46,20 +46,28 @@ function About() {
           things that scratch an itch.
         </p>
         <p>
-          I also built and run a{" "}
+          I run{" "}
+          <a
+            href="https://www.soulhause.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="accent-link"
+          >
+            <span className="accent">SoulHause</span>
+          </a>
+          , a civic-tech startup creating tools for small businesses and
+          communities while hosting tech events and workshops that bring people
+          together. I also built a{" "}
           <a
             href="https://techafterdark.live"
             target="_blank"
             rel="noopener noreferrer"
             className="accent-link"
           >
-            tech community
-          </a>{" "}
-          of <span className="accent">1,100+ members</span>, host AI workshops,
-          and spend a lot of my free time exploring whatever new model,
-          framework, or weird idea is making the rounds. I&apos;m genuinely
-          passionate about tech — the craft of it, the people in it, and the
-          small useful things you can ship with it.
+            <span className="accent">1,100+ person tech community</span>
+          </a>
+          , teach AI, and spend my free time exploring new models and ideas
+          that push tech forward.
         </p>
       </div>
     </section>
