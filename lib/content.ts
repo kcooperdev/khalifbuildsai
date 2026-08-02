@@ -40,7 +40,7 @@ export const projects: Project[] = [
     body: [
       "AI bills grow quietly. Every prompt, every retry, every over-stuffed context window costs tokens, and most of that spend is invisible until the invoice arrives.",
       "Tokenlens is a TypeScript CLI that breaks the spend down: it shows exactly where your tokens go, so you can spot the waste and cut it before it compounds.",
-      "It's a work in progress and in active development — the kind of small, sharp tool I like building for problems I run into myself.",
+      "It's a work in progress and in active development. It's the kind of small, sharp tool I like building for problems I run into myself.",
     ],
   },
   {

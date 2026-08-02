@@ -13,7 +13,7 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "Khalif's Console",
   description:
-    "The personal site of Khalif — a founder and writer. Essays, projects, books, tools, and raw notes on building calmly.",
+    "The personal site of Khalif, a founder and writer. Essays, projects, books, tools, and raw notes on building calmly.",
   icons: {
     icon: [
       {

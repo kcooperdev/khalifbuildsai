@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header"
 import { books } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Books — Khalif's Console",
+  title: "Books | Khalif's Console",
   description: "Books that matter to Khalif, with a note on why.",
 }
 

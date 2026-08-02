@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header"
 import { ThoughtsReader } from "@/components/thoughts-reader"
 
 export const metadata: Metadata = {
-  title: "Thoughts — Khalif's Console",
+  title: "Thoughts | Khalif's Console",
   description: "Short blog posts, founder logs, and reflections.",
 }
 

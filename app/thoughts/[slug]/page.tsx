@@ -17,7 +17,7 @@ export async function generateMetadata({
   const thought = thoughts.find((t) => t.slug === slug)
   if (!thought) return {}
   return {
-    title: `${thought.title} — Khalif's Console`,
+    title: `${thought.title} | Khalif's Console`,
     description: thought.excerpt,
   }
 }

@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header"
 import { site } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "About — Khalif's Console",
+  title: "About | Khalif's Console",
   description: "A short, plain-language bio of Khalif.",
 }
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="A short bio"
-        description="Who I am and how I like to work — in plain language."
+        description="Who I am and how I like to work, in plain language."
       />
 
       <p className="text-lg font-medium text-primary text-balance">
@@ -33,13 +33,13 @@ export default function AboutPage() {
 
       <div className="mt-5 flex flex-col gap-5 text-lg leading-relaxed text-foreground/90 text-pretty">
         <p>
-          {"I'm Khalif — a self-taught software engineer who's been building in tech for over a decade. Code is where I started and where I'm most at home: making small, useful things and shipping them."}
+          {"I'm Khalif, a self-taught software engineer who's been building in tech for over a decade. Code is where I started and where I'm most at home: making small, useful things and shipping them."}
         </p>
         <p>
-          {"I build quick, and I'm a solo builder at heart. But the thing I love most is creating spaces where people come together to collaborate and build — growing the communities and ecosystems around the work."}
+          {"I build quick, and I'm a solo builder at heart. But the thing I love most is creating spaces where people come together to collaborate and build, growing the communities and ecosystems around the work."}
         </p>
         <p>
-          {"This site is my console: one place for my projects, my work, and my thinking — readable by anyone, technical or not."}
+          {"This site is my console: one place for my projects, my work, and my thinking. It's readable by anyone, technical or not."}
         </p>
       </div>
 

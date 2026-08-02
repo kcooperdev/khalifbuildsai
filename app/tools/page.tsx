@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header"
 import { tools } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Tools — Khalif's Console",
+  title: "Tools | Khalif's Console",
   description: "The tools Khalif uses to work, and why.",
 }
 
@@ -14,7 +14,7 @@ export default function ToolsPage() {
       <PageHeader
         eyebrow="Tools"
         title="What I work with"
-        description="What I reach for to do the work — and a short note on each."
+        description="What I reach for to do the work, and a short note on each."
       />
 
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
