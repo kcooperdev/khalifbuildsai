@@ -91,32 +91,37 @@ export const projects: Project[] = [
   },
 ]
 
-export type Book = { title: string; author: string; note: string; link: string }
+export type Book = { title: string; author: string; note: string; link: string; image: string }
 
+// Cover images are self-hosted in /public/books (from the Open Library covers API).
 export const books: Book[] = [
   {
-    title: "The Almanack of Naval Ravikant",
-    author: "Eric Jorgenson",
-    note: "A reminder that wealth and peace can be built the same way: patiently.",
-    link: "https://www.navalmanack.com/",
+    title: "People First Culture",
+    author: "Michel Falcon",
+    note: "The playbook I keep coming back to: take care of the people and the community builds itself.",
+    link: "https://www.goodreads.com/book/show/42370998-people-first-culture",
+    image: "/books/people-first-culture.jpg",
   },
   {
-    title: "Zero to One",
-    author: "Peter Thiel",
-    note: "Made me comfortable with going in a direction no one else is looking.",
-    link: "https://www.goodreads.com/book/show/18050143-zero-to-one",
+    title: "Million Dollar Weekend",
+    author: "Noah Kagan",
+    note: "Permission to start this weekend instead of planning for a perfect someday.",
+    link: "https://www.goodreads.com/book/show/145624504-million-dollar-weekend",
+    image: "/books/million-dollar-weekend.jpg",
   },
   {
-    title: "Letters to a Young Poet",
-    author: "Rainer Maria Rilke",
-    note: "The best writing about doubt I have ever read.",
-    link: "https://www.goodreads.com/book/show/46199.Letters_to_a_Young_Poet",
+    title: "Atomic Habits",
+    author: "James Clear",
+    note: "Proof that showing up small every day beats waiting for a big burst of motivation.",
+    link: "https://www.goodreads.com/book/show/40121378-atomic-habits",
+    image: "/books/atomic-habits.jpg",
   },
   {
-    title: "The Practice",
-    author: "Seth Godin",
-    note: "Shipping is a habit, not a moment of courage.",
-    link: "https://www.goodreads.com/book/show/52690005-the-practice",
+    title: "Minimalism: Live a Meaningful Life",
+    author: "Joshua Fields Millburn and Ryan Nicodemus",
+    note: "A reminder that everything I own and everything I build should earn its place.",
+    link: "https://www.goodreads.com/book/show/13185350-minimalism",
+    image: "/books/minimalism.jpg",
   },
 ]
 
