@@ -138,61 +138,15 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "tokenlens",
-    name: "Tokenlens",
+    slug: "pushlog",
+    name: "PushLog",
     description:
-      "A CLI tool that shows you exactly where your tokens go so you can cut waste and lower AI costs.",
-    link: "https://github.com/kcooperdev/tokenlens",
+      "A Chrome extension that shows Adobe Analytics, AEP Web SDK, and Google Tag Manager events in a timeline, without opening DevTools.",
+    link: "https://github.com/kcooperdev/pushlog",
     body: [
-      "AI bills grow quietly. Every prompt, every retry, every over-stuffed context window costs tokens, and most of that spend is invisible until the invoice arrives.",
-      "Tokenlens is a TypeScript CLI that breaks the spend down: it shows exactly where your tokens go, so you can spot the waste and cut it before it compounds.",
-      "It's a work in progress and in active development. It's the kind of small, sharp tool I like building for problems I run into myself.",
-    ],
-  },
-  {
-    slug: "whats-for-dinner",
-    name: "What's for Dinner",
-    description:
-      "Scans the leftover items in your fridge and generates recipes from what's actually there.",
-    link: "https://github.com/kcooperdev/whats-for-dinner",
-    body: [
-      "Open the fridge. Stare. Close the fridge. Order takeout. Repeat. What's for Dinner exists to kill that loop: the decision fatigue that hits at the worst time of day.",
-      "You snap a photo of your fridge or pantry, and a vision model identifies what you have and proposes a recipe you can actually cook tonight. No meal-prep apps, no shopping lists. Just the food in front of you, turned into a plan in under ten seconds.",
-      "Built with Next.js and Gemini, shipped on Vercel. It's the project that best captures how I like to build: a small, real problem, solved end to end.",
-    ],
-  },
-  {
-    slug: "pdf-reader-ai",
-    name: "PDF Reader AI",
-    description:
-      "An AI-powered PDF reader that extracts, summarizes, and explains documents in seconds.",
-    link: "https://github.com/kcooperdev/pdf-reader-ai",
-    body: [
-      "Most PDFs are where information goes to hide. Contracts, research papers, reports: dense pages you have to fight through to find the one thing you need.",
-      "PDF Reader AI takes any document and automatically extracts, summarizes, and explains its content, so you can understand the file in seconds instead of an afternoon.",
-      "It started as a tool for my own reading pile and turned into a study in making AI output feel trustworthy: clear sources, plain language, no hand-waving.",
-    ],
-  },
-  {
-    slug: "docmint",
-    name: "Docmint",
-    description: "A tool for generating better READMEs, because docs are the first impression.",
-    link: "https://github.com/kcooperdev/docmint",
-    body: [
-      "A README is the front door of a project, and most of them are either empty or written in a hurry at 2am. Docmint helps you create better ones.",
-      "It looks at what a project actually does and drafts documentation that a stranger could follow: setup, usage, and the why behind the code.",
-      "The deeper idea: if writing good docs takes minutes instead of hours, more small projects get finished properly instead of abandoned at 90%.",
-    ],
-  },
-  {
-    slug: "findtechnearme",
-    name: "Find Tech Near Me",
-    description: "A web app for finding tech events happening near you.",
-    link: "https://github.com/kcooperdev/findtechnearme",
-    body: [
-      "The best things in a tech scene happen in rooms, and most people never hear about them. Find Tech Near Me is a simple answer to a simple question: what's happening around me this week?",
-      "It grew directly out of my community work in Baltimore. It's the same instinct behind Baltimore Tech Week, pointed at the everyday calendar instead of one big week.",
-      "It's deliberately boring technology: a fast page, a clear list, and a map. The value is in the completeness, not the cleverness.",
+      "Analytics events fire and disappear. Checking them usually means opening DevTools and digging through callback noise.",
+      "PushLog captures events as they happen and puts them in a searchable timeline. It separates Adobe Client Data Layer activity, tracks AEP Web SDK events, and monitors Google Tag Manager.",
+      "The point is a clean view of what actually fired, so an analytics engineer can validate the payload without leaving the page.",
     ],
   },
 ]
