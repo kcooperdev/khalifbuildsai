@@ -39,67 +39,23 @@ export const offers = [
 ]
 
 export const guide = {
-  title: "What to type into AI",
-  file: "what-to-type-into-ai.pdf",
-  dek: "Prompts you can paste into any AI chat: build a practical skill, advance a career, write a small offer, or find your people. Then one page you send this week. No tech background required.",
+  title: "Use AI to Get Ahead",
+  file: "use-ai-to-get-ahead.pdf",
+  dek: "A free guide for ambitious professionals, creators, and builders.",
+  lead: "Learn how to use AI to:",
   points: [
-    "Build a practical skill",
-    "Advance a career",
-    "Write a small offer",
-    "Find your people",
+    "Learn valuable skills",
+    "Advance your career",
+    "Create income opportunities",
+    "Expand your network",
+    "Turn ideas into action",
   ],
-  close:
-    "Prompts you can paste into any AI chat. Then one page you send this week. No tech background required.",
-  tools: [
-    {
-      name: "Build a practical skill",
-      use: "Ask AI when you want to get better at one thing you already do.",
-      today:
-        'Paste: "I want to get better at [skill]. Teach it in five short steps a beginner can do. Give me only step one, and one way to practice it today." Do step one before you read the rest.',
-    },
-    {
-      name: "Advance a career",
-      use: "Ask AI when you are applying, asking for more responsibility, or trying to explain your work.",
-      today:
-        'Paste: "Here is a job post or a task from my work: [paste it]. Rewrite one bullet from my background so it matches. Then give me three questions I should be ready to answer."',
-    },
-    {
-      name: "Write a small offer",
-      use: "Ask AI when you could help one person and you do not have a company yet.",
-      today:
-        'Paste: "I can help [who] with [problem]. Write a one-page offer: what they get, how long it takes, and one way they can reply yes."',
-    },
-    {
-      name: "Find your people",
-      use: "Ask AI when you need a room, a collaborator, or someone who has already done it.",
-      today:
-        'Paste: "I am in [city] and I want to meet people who [what you are doing]. Give me five specific places to show up in the next two weeks, and one sentence I can use to introduce myself."',
-    },
-  ],
-  project: {
-    title: "Then send one page",
-    intro:
-      "Pick the small-offer prompt. Paste it into any AI chat. Fill in the brackets for one real person. Send the page this week.",
-    steps: [
-      "Pick one person you could help. A classmate, a manager, a neighbor, a small business.",
-      "Paste the small-offer prompt. Put their name and the one problem in the brackets.",
-      "Read the page out loud. Cut anything you would not say to their face.",
-      "Send it to that one person this week. Ask for a yes or a no.",
-    ],
-  },
+  close: "Get 20 copy-and-paste prompts you can use in any AI tool today.",
 }
 
 export function guideEmailBody() {
-  const tools = guide.tools
-    .map(
-      (tool, index) =>
-        `${index + 1}. ${tool.name}\n${tool.use}\nPaste this: ${tool.today}`,
-    )
-    .join("\n\n")
-  const steps = guide.project.steps
-    .map((step, index) => `${index + 1}. ${step}`)
-    .join("\n")
-  return `${guide.title}\n\n${guide.dek}\n\n${tools}\n\n${guide.project.title}\n${guide.project.intro}\n\n${steps}`
+  const points = guide.points.map((point) => `- ${point}`).join("\n")
+  return `${guide.title}\n\n${guide.dek}\n\n${guide.lead}\n${points}\n\n${guide.close}`
 }
 
 export const story = [

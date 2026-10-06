@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     "I help everyday people use AI to build practical skills, advance their careers, grow businesses, and unlock new opportunities.",
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
       { url: "/icon.svg", type: "image/svg+xml" },
       { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
     ],

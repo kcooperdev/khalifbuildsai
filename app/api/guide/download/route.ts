@@ -1,7 +1,6 @@
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
-import { guide } from "@/lib/content"
-import { guidePdf } from "@/lib/guide-pdf"
+import { guidePdfHeaders, readGuidePdf } from "@/lib/guide-file"
 
 export async function GET(request: Request) {
   const jar = await cookies()
@@ -12,12 +11,6 @@ export async function GET(request: Request) {
     return NextResponse.redirect(home, 303)
   }
 
-  const pdf = guidePdf()
-  return new NextResponse(Buffer.from(pdf), {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename="${guide.file}"`,
-      "Cache-Control": "private, no-store",
-    },
-  })
+  const pdf = await readGuidePdf()
+  return new NextResponse(pdf, { headers: guidePdfHeaders })
 }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { guideEmailBody, site } from "@/lib/content"
-import { notifyKhalif, saveLead } from "@/lib/leads"
+import { guidePdfHeaders, readGuidePdf } from "@/lib/guide-file"
+import { notifyKhalif, saveGuideContact, saveLead } from "@/lib/leads"
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -65,15 +66,25 @@ export async function POST(request: Request) {
     saved = false
   }
 
+  try {
+    const stored = await saveGuideContact(email)
+    if (stored) saved = true
+  } catch {
+    console.error("Resend contact was not saved")
+  }
+
   if (process.env.NODE_ENV === "production") {
     let sent = false
     try {
-      sent = await notifyKhalif({
-        email,
-        _subject: "New request for the free guide",
-        _autoresponse: guideEmailBody(),
-        message: `${email} asked for the free guide. The guide was emailed to them.`,
-      })
+      sent = await notifyKhalif(
+        {
+          email,
+          _subject: "Someone downloaded the guide",
+          _autoresponse: guideEmailBody(),
+          message: `${email} downloaded Use AI to Get Ahead.`,
+        },
+        "khalifcooper24@gmail.com",
+      )
     } catch {
       sent = false
     }
@@ -98,11 +109,6 @@ export async function POST(request: Request) {
     return NextResponse.redirect(sameOrigin(request, "/?guide=error"), 303)
   }
 
-  if (!asJson) {
-    return withGuideCookie(
-      NextResponse.redirect(sameOrigin(request, "/guide"), 303),
-    )
-  }
-
-  return withGuideCookie(NextResponse.json({ ok: true }))
+  const pdf = await readGuidePdf()
+  return withGuideCookie(new NextResponse(pdf, { headers: guidePdfHeaders }))
 }
