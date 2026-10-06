@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server"
-import { guideEmailBody, site } from "@/lib/content"
+import { guideEmailBody } from "@/lib/content"
 import { guidePdfHeaders, readGuidePdf } from "@/lib/guide-file"
 import { notifyKhalif, saveGuideContact, saveLead } from "@/lib/leads"
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const guideNotifyEmail = "khalifcooper24@gmail.com"
 
 function sameOrigin(request: Request, path: string) {
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host")
@@ -74,37 +75,27 @@ export async function POST(request: Request) {
   }
 
   if (process.env.NODE_ENV === "production") {
-    let sent = false
     try {
-      sent = await notifyKhalif(
+      const sent = await notifyKhalif(
         {
           email,
           _subject: "Someone downloaded the guide",
           _autoresponse: guideEmailBody(),
           message: `${email} downloaded Use AI to Get Ahead.`,
         },
-        "khalifcooper24@gmail.com",
+        guideNotifyEmail,
       )
+      if (sent) saved = true
+      else console.error("Guide notification was not sent")
     } catch {
-      sent = false
+      console.error("Guide notification was not sent")
     }
-    if (!sent) {
-      if (asJson) {
-        return NextResponse.json(
-          {
-            error: `Couldn't save that. Email ${site.email} and I'll send the guide.`,
-          },
-          { status: 502 },
-        )
-      }
-      return NextResponse.redirect(sameOrigin(request, "/?guide=error"), 303)
-    }
-  } else if (!saved) {
+  }
+
+  if (!saved) {
+    const error = `Couldn't save that. Email ${guideNotifyEmail} and I'll send the guide.`
     if (asJson) {
-      return NextResponse.json(
-        { error: "Couldn't save that email. Try again." },
-        { status: 500 },
-      )
+      return NextResponse.json({ error }, { status: 502 })
     }
     return NextResponse.redirect(sameOrigin(request, "/?guide=error"), 303)
   }

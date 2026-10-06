@@ -14,7 +14,7 @@ export default async function HomePage({
     params.guide === "invalid"
       ? "Enter a real email."
       : params.guide === "error"
-        ? "Couldn't save that email. Try again."
+        ? "Couldn't save that. Email khalifcooper24@gmail.com and I'll send the guide."
         : ""
 
   return (
