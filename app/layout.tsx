@@ -11,9 +11,12 @@ const geist = Geist({
 })
 
 export const metadata: Metadata = {
-  title: "Khalif's Console",
+  title: {
+    default: "Khalif Cooper",
+    template: "%s · Khalif Cooper",
+  },
   description:
-    "The personal site of Khalif, a founder and writer. Essays, projects, books, tools, and raw notes on building calmly.",
+    "I help everyday people use AI to build practical skills, advance their careers, grow businesses, and unlock new opportunities.",
   icons: {
     icon: [
       {
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#faf3e7',
+  themeColor: '#ffffff',
 }
 
 export default function RootLayout({

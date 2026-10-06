@@ -17,7 +17,7 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug)
   if (!project) return {}
   return {
-    title: `${project.name} | Khalif's Console`,
+    title: project.name,
     description: project.description,
   }
 }
@@ -63,16 +63,16 @@ export default async function ProjectPage({
         href={project.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-10 inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+        className="mt-10 inline-flex items-center gap-1.5 rounded-sm border-2 border-foreground bg-primary px-5 py-2.5 text-sm font-medium text-foreground hover:bg-foreground hover:text-background"
       >
         Visit project
         <ArrowUpRight className="h-4 w-4" aria-hidden />
       </a>
 
-      <footer className="mt-16 border-t border-border pt-8">
+      <footer className="mt-16 border-t-2 border-foreground pt-8">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-opacity hover:opacity-80"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-foreground"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           Back to projects

@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header"
 import { ProjectsReader } from "@/components/projects-reader"
 
 export const metadata: Metadata = {
-  title: "Projects | Khalif's Console",
+  title: "Projects",
   description: "Personal projects Khalif is building.",
 }
 

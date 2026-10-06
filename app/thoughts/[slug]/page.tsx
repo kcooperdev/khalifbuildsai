@@ -17,7 +17,7 @@ export async function generateMetadata({
   const thought = thoughts.find((t) => t.slug === slug)
   if (!thought) return {}
   return {
-    title: `${thought.title} | Khalif's Console`,
+    title: thought.title,
     description: thought.excerpt,
   }
 }
@@ -45,7 +45,7 @@ export default async function ThoughtPage({
         <div className="flex items-center gap-2.5">
           <time
             dateTime={thought.date}
-            className="text-xs font-semibold uppercase tracking-wide text-primary"
+            className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
           >
             {formatDate(thought.date)}
           </time>
@@ -68,10 +68,10 @@ export default async function ThoughtPage({
         ))}
       </div>
 
-      <footer className="mt-16 border-t border-border pt-8">
+      <footer className="mt-16 border-t-2 border-foreground pt-8">
         <Link
           href="/thoughts"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-opacity hover:opacity-80"
+          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-foreground"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden />
           Back to thoughts

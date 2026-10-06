@@ -17,7 +17,7 @@ export function ThoughtsReader() {
               <div className="flex items-center gap-2.5">
                 <time
                   dateTime={t.date}
-                  className="text-xs font-semibold uppercase tracking-wide text-primary"
+                  className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
                 >
                   {formatDate(t.date)}
                 </time>
@@ -35,7 +35,7 @@ export function ThoughtsReader() {
               <p className="leading-relaxed text-muted-foreground text-pretty">
                 {t.excerpt}
               </p>
-              <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-primary">
+              <span className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
                 Read post
                 <ArrowRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"

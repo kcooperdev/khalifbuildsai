@@ -2,24 +2,174 @@
 // Everything here is plain text. Edit freely to make the site your own.
 
 export const site = {
-  name: "Khalif's Console",
-  author: "Khalif",
-  intro:
-    "Khalif is a community and ecosystem builder and a self taught software engineer with over a decade of experience. He creates spaces where people and ideas come together, and builds the tools that bring them to life.",
+  name: "Khalif Cooper",
+  author: "Khalif Cooper",
+  label: "Engineer. AI educator. Community builder.",
+  audience: "For everyday people getting started.",
+  credentials:
+    "Software engineer at CarMax. Founder of Bmore Tech Nights and Baltimore Tech Week.",
+  headline: "Build the skill. Build the work. Find your people.",
+  promise:
+    "I help everyday people use AI to build practical skills, advance their careers, grow businesses, and unlock new opportunities.",
+  method:
+    "Through workshops, events, and hands-on training, I make the tools usable for beginners.",
+  proofLine:
+    "Getting to a tech event meant walking and taking the bus for an hour. I went anyway.",
   email: "hello@kcooperdev.com",
   speaking:
-    "Available for talks and panels on early-stage building, focus, and the founder mindset.",
+    "Available for talks and workshops on practical AI, career growth, and community building.",
+}
+
+export const offers = [
+  {
+    detail: "Skills",
+    leaves: "You leave able to use AI on one real task this week.",
+    body: "A workshop starts from the work you already have. No tech background required.",
+  },
+  {
+    detail: "Careers and businesses",
+    leaves: "You leave with the next step: what to practice, what to show, and who to ask.",
+    body: "A talk for a team, a campus, or anyone turning AI into a role, an income, or a company.",
+  },
+  {
+    detail: "Meaningful connections",
+    leaves: "You leave knowing where to show up next.",
+    body: "Bmore Tech Nights and Baltimore Tech Week.",
+  },
+]
+
+export const guide = {
+  title: "What to type into AI",
+  file: "what-to-type-into-ai.pdf",
+  dek: "Prompts you can paste into any AI chat: build a practical skill, advance a career, write a small offer, or find your people. Then one page you send this week. No tech background required.",
+  points: [
+    "Build a practical skill",
+    "Advance a career",
+    "Write a small offer",
+    "Find your people",
+  ],
+  close:
+    "Prompts you can paste into any AI chat. Then one page you send this week. No tech background required.",
+  tools: [
+    {
+      name: "Build a practical skill",
+      use: "Ask AI when you want to get better at one thing you already do.",
+      today:
+        'Paste: "I want to get better at [skill]. Teach it in five short steps a beginner can do. Give me only step one, and one way to practice it today." Do step one before you read the rest.',
+    },
+    {
+      name: "Advance a career",
+      use: "Ask AI when you are applying, asking for more responsibility, or trying to explain your work.",
+      today:
+        'Paste: "Here is a job post or a task from my work: [paste it]. Rewrite one bullet from my background so it matches. Then give me three questions I should be ready to answer."',
+    },
+    {
+      name: "Write a small offer",
+      use: "Ask AI when you could help one person and you do not have a company yet.",
+      today:
+        'Paste: "I can help [who] with [problem]. Write a one-page offer: what they get, how long it takes, and one way they can reply yes."',
+    },
+    {
+      name: "Find your people",
+      use: "Ask AI when you need a room, a collaborator, or someone who has already done it.",
+      today:
+        'Paste: "I am in [city] and I want to meet people who [what you are doing]. Give me five specific places to show up in the next two weeks, and one sentence I can use to introduce myself."',
+    },
+  ],
+  project: {
+    title: "Then send one page",
+    intro:
+      "Pick the small-offer prompt. Paste it into any AI chat. Fill in the brackets for one real person. Send the page this week.",
+    steps: [
+      "Pick one person you could help. A classmate, a manager, a neighbor, a small business.",
+      "Paste the small-offer prompt. Put their name and the one problem in the brackets.",
+      "Read the page out loud. Cut anything you would not say to their face.",
+      "Send it to that one person this week. Ask for a yes or a no.",
+    ],
+  },
+}
+
+export function guideEmailBody() {
+  const tools = guide.tools
+    .map(
+      (tool, index) =>
+        `${index + 1}. ${tool.name}\n${tool.use}\nPaste this: ${tool.today}`,
+    )
+    .join("\n\n")
+  const steps = guide.project.steps
+    .map((step, index) => `${index + 1}. ${step}`)
+    .join("\n")
+  return `${guide.title}\n\n${guide.dek}\n\n${tools}\n\n${guide.project.title}\n${guide.project.intro}\n\n${steps}`
+}
+
+export const story = [
+  "I graduated with a theater degree and no job. I waited tables, worked day jobs, and didn't get a car until I was 25. Getting to a tech event meant walking and taking the bus for an hour. I went anyway.",
+  "In 2015 I worked a tech conference and started a bootcamp the next week. I failed out. I was told tech wasn't for me, and to try something else.",
+  "I bought a laptop on eBay for $200 and taught myself through freeCodeCamp and YouTube. I didn't make an excuse. I got back up and tried again. I've been in tech since then.",
+  "I build the rooms I used to take the bus to get to: Bmore Tech Nights and Baltimore Tech Week.",
+]
+
+export const talks = [
+  "Per Scholas Baltimore",
+  "Morgan State University",
+  "American University",
+  "StarTUp at the Armory",
+]
+
+export const podcasts = ["Tech Woke", "Baltimore Creators"]
+
+export const rooms = [
+  {
+    name: "Bmore Tech Nights",
+    href: "https://bmoretechnights.com",
+    note: "A monthly meetup for builders, career changers, founders, and anyone tech-curious.",
+  },
+  {
+    name: "Baltimore Tech Week",
+    href: "https://bmoretechweek.com",
+    note: "A citywide week for builders and partners.",
+  },
+]
+
+export const press = [
+  {
+    outlet: "Technical.ly",
+    title: "A local organizer is reviving Baltimore Tech Week",
+    href: "https://technical.ly/entrepreneurship/baltimore-tech-week-2026-events-meetups/",
+  },
+  {
+    outlet: "Technical.ly",
+    title: "RealLIST Innovators 2025",
+    href: "https://technical.ly/entrepreneurship/reallist-innovators-2025-maryland/",
+  },
+]
+
+export const earlierInterview = {
+  label: "An earlier interview",
+  outlet: "VoyageBaltimore",
+  href: "https://voyagebaltimore.com/interview/inspiring-conversations-with-khalif-cooper-of-blk-tech-connect/",
+}
+
+export const featureVideo = {
+  title: "Build Your Own Ecosystem",
+  detail: "Khalif Cooper with Potomac24",
+  href: "https://www.youtube.com/watch?v=02Qls8uag6M",
+  embed: "https://www.youtube-nocookie.com/embed/02Qls8uag6M",
 }
 
 export type NavItem = { label: string; href: string; note: string }
 
 export const nav: NavItem[] = [
-  { label: "Home", href: "/", note: "Start here." },
+  { label: "Home", href: "/", note: "Back to the start." },
+  { label: "About", href: "/about", note: "The short story." },
+  { label: "Book", href: "/book", note: "A talk or a workshop." },
+]
+
+export const archive = [
   { label: "Projects", href: "/projects", note: "Things I'm building." },
+  { label: "Thoughts", href: "/thoughts", note: "Notes and founder logs." },
   { label: "Books", href: "/books", note: "What I read and why." },
   { label: "Tools", href: "/tools", note: "What I use to work." },
-  { label: "About", href: "/about", note: "A short bio." },
-  { label: "Thoughts", href: "/thoughts", note: "Raw notes and founder logs." },
 ]
 
 export type Project = {

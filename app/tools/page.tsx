@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/page-header"
 import { tools } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Tools | Khalif's Console",
+  title: "Tools",
   description: "The tools Khalif uses to work, and why.",
 }
 
@@ -21,7 +21,7 @@ export default function ToolsPage() {
         {tools.map((t) => (
           <li
             key={t.name}
-            className="flex items-start gap-4 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
+            className="flex items-start gap-4 rounded-sm border-2 border-foreground bg-card p-4 hover:bg-muted"
           >
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-background">
               <Image

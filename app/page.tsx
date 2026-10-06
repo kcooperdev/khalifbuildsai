@@ -1,56 +1,61 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { nav, site } from "@/lib/content"
+import { GuideForm } from "@/components/guide-form"
+import { site } from "@/lib/content"
 
-export default function HomePage() {
-  const links = nav.filter((item) => item.href !== "/")
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ guide?: string }>
+}) {
+  const params = await searchParams
+  const guideError =
+    params.guide === "invalid"
+      ? "Enter a real email."
+      : params.guide === "error"
+        ? "Couldn't save that email. Try again."
+        : ""
 
   return (
     <div>
-      <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-        Engineer & community builder
-      </span>
-
-      <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-balance md:text-5xl">
-        Building useful things and the{" "}
-        <span className="text-primary">community</span> around them.
+      <p className="text-xs font-medium uppercase tracking-widest text-primary">
+        {site.label}
+      </p>
+      <h1 className="mt-3 text-4xl font-semibold leading-[1.1] tracking-tight text-balance md:text-5xl">
+        {site.headline}
       </h1>
 
-      <p className="mt-5 max-w-prose text-lg leading-relaxed text-muted-foreground text-pretty">
-        {site.intro}
-      </p>
+      <p className="mt-5 text-lg leading-relaxed text-pretty">{site.promise}</p>
 
-      <div className="mt-10 grid gap-3 sm:grid-cols-2">
-        {links.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="group flex flex-col justify-between gap-6 rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <span className="text-lg font-medium tracking-tight">
-                {item.label}
-              </span>
-              <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
-            </div>
-            <span className="text-sm text-muted-foreground text-pretty">
-              {item.note}
-            </span>
-          </Link>
-        ))}
+      <div className="mt-8">
+        <GuideForm error={guideError} />
       </div>
 
-      <div className="mt-10 rounded-2xl bg-primary p-6 text-primary-foreground">
-        <p className="leading-relaxed text-pretty">{site.speaking}</p>
-        <a
-          href={`mailto:${site.email}`}
-          className="mt-4 inline-flex items-center gap-1 text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-80"
+      <section className="mt-16 border-2 border-foreground p-5">
+        <div className="flex items-center gap-4">
+          <Image
+            src="/khalif.jpg"
+            alt="Khalif Cooper"
+            width={72}
+            height={72}
+            className="h-[4.5rem] w-[4.5rem] shrink-0 border-2 border-foreground object-cover"
+          />
+          <blockquote className="text-lg font-medium leading-snug tracking-tight text-balance">
+            {site.proofLine}
+          </blockquote>
+        </div>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-pretty">
+          {site.credentials}
+        </p>
+        <Link
+          href="/about"
+          className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-foreground underline underline-offset-4"
         >
-          Email me
+          The story
           <ArrowUpRight className="h-4 w-4" aria-hidden />
-        </a>
-      </div>
+        </Link>
+      </section>
     </div>
   )
 }

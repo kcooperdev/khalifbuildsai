@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/page-header"
 import { books } from "@/lib/content"
 
 export const metadata: Metadata = {
-  title: "Books | Khalif's Console",
+  title: "Books",
   description: "Books that matter to Khalif, with a note on why.",
 }
 
@@ -18,7 +18,7 @@ export default function BooksPage() {
         description="Books that shaped how I think. Tap any title to go to the book."
       />
 
-      <ul className="flex flex-col divide-y divide-border">
+      <ul className="flex flex-col divide-y-2 divide-foreground">
         {books.map((b) => (
           <li key={b.title} className="flex items-start gap-5 py-8 first:pt-0 sm:gap-7">
             <a
@@ -34,7 +34,7 @@ export default function BooksPage() {
                 alt={`Cover of ${b.title} by ${b.author}`}
                 width={96}
                 height={144}
-                className="aspect-[2/3] w-20 rounded-lg border border-border object-cover shadow-sm sm:w-24"
+                className="aspect-[2/3] w-20 border-2 border-foreground object-cover sm:w-24"
               />
             </a>
             <div className="min-w-0">
@@ -50,7 +50,7 @@ export default function BooksPage() {
                   aria-hidden
                 />
               </a>
-              <p className="mt-0.5 text-sm font-medium text-primary">{b.author}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">{b.author}</p>
               <p className="mt-2 leading-relaxed text-foreground/80 text-pretty">
                 {b.note}
               </p>
